@@ -96,7 +96,7 @@ if not df_filtered.empty:
     col4.metric("Control Corrupción", f"{avg_corr:.2f}")
 
 # Tabs de contenido
-tab1, tab2, tab3, tab4 = st.tabs(["📊 Análisis Exploratorio", "🤖 Modelo ML Interactivo", "🗺️ Visión Regional", "📂 Documentación"])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["📊 Análisis Exploratorio", "🤖 Modelo ML Interactivo", "🗺️ Visión Regional", "📂 Documentación", "🤖 Asistente IA"])
 
 # -----------------------------------------------------------------------------
 # Tab 1: Análisis Exploratorio
@@ -227,3 +227,126 @@ with tab4:
     # Mostrar contenido del archivo seleccionado
     file_content = read_markdown_file(docs[selected_doc_name])
     st.markdown(file_content, unsafe_allow_html=True)
+
+# -----------------------------------------------------------------------------
+# Tab 5: Asistente IA (Algorithmic Analyst)
+# -----------------------------------------------------------------------------
+with tab5:
+    st.header("🤖 Asistente Virtual: 'QoG-Bot'")
+    st.markdown("""
+    Este asistente utiliza lógica analítica avanzada para generar reportes automáticos y responder preguntas sobre los datos.
+    """)
+    
+    col_bot1, col_bot2 = st.columns([1, 2])
+    
+    with col_bot1:
+        st.subheader("📝 Generar Reporte Automático")
+        report_country = st.selectbox("Elige un país para analizar:", df['cname'].unique())
+        if st.button("Generar Informe"):
+            # Lógica de "AI" narrativa
+            country_data = df[df['cname'] == report_country].sort_values('year')
+            
+            # Helper para buscar dato válido más reciente
+            def get_val(data, col):
+                valid = data.dropna(subset=[col])
+                if not valid.empty:
+                    row = valid.iloc[-1]
+                    return row[col], int(row['year'])
+                return None, None
+
+            gdp, gdp_yr = get_val(country_data, 'gle_cgdpc')
+            mil, mil_yr = get_val(country_data, 'wdi_expmil')
+            pol, pol_yr = get_val(country_data, 'p_polity2')
+            
+            # Cálculos comparativos (usando el año del dato encontrado)
+            if gdp:
+                avg_gdp_region = df[df['year'] == gdp_yr]['gle_cgdpc'].mean()
+                status_eco = "superior" if gdp > avg_gdp_region else "inferior"
+                gdp_txt = f"**${gdp:,.0f}** (dato {gdp_yr})"
+                comp_txt = f"${avg_gdp_region:,.0f}"
+            else:
+                status_eco, gdp_txt, comp_txt = "desconocido", "No disponible", "N/A"
+
+            trend_dem = "estable"
+            if pol is not None:
+                first_pol = country_data.iloc[0]['p_polity2']
+                if pd.notna(first_pol):
+                    trend_dem = "mejorando" if pol > first_pol else "empeorando" if pol < first_pol else "igual"
+            
+            pol_txt = f"**{pol}** ({pol_yr})" if pol is not None else "No disponible"
+            mil_txt = f"**{mil:.2f}%** ({mil_yr})" if mil is not None else "No disponible"
+            
+            wdi_expmil_val = mil if mil is not None else 0.0
+
+            narrative = f"""
+            ### 🕵️ Análisis de Inteligencia para **{report_country}**
+            
+            **1. Situación Económica:**
+            El PIB per cápita más reciente es de {gdp_txt}, lo cual es **{status_eco}** al promedio de la región en ese año ({comp_txt}).
+            
+            **2. Perfil de Poder:**
+            {report_country} muestra un Gasto Militar del {mil_txt} del PIB. 
+            En términos políticos, su índice democrático es {pol_txt} (escala -10 a 10), mostrando una tendencia **{trend_dem}** respecto al inicio del periodo.
+            
+            **3. Conclusión Algorítmica:**
+            Este perfil sugiere un estado que prioriza {'la seguridad (Poder Duro)' if wdi_expmil_val > 3.0 else 'el desarrollo civil/mixto'}.
+            """
+            st.success("Informe generado con éxito.")
+            st.markdown(narrative)
+            
+    with col_bot2:
+        st.subheader("💬 Pregúntale a los Datos")
+        question_type = st.selectbox("¿Qué quieres saber?", 
+                                     ["¿Qué país es más rico?", 
+                                      "¿Qué país es más corrupto?", 
+                                      "¿Quién gasta más en ejército?",
+                                      "¿Cuál es el país más democrático?"])
+        
+        if df.empty:
+            st.error("No hay datos para analizar.")
+        else:
+            # Función auxiliar para encontrar el registro más reciente y válido
+            def get_latest_leader(metric_col, maximize=True):
+                # 1. Eliminar nulos de esa métrica
+                valid_df = df.dropna(subset=[metric_col])
+                if valid_df.empty:
+                    return None
+                
+                # 2. Encontrar el año más reciente con datos
+                last_valid_year = valid_df['year'].max()
+                latest_data = valid_df[valid_df['year'] == last_valid_year]
+                
+                # 3. Obtener el max o min
+                if maximize:
+                    return latest_data.loc[latest_data[metric_col].idxmax()]
+                else:
+                    return latest_data.loc[latest_data[metric_col].idxmin()]
+
+            if "más rico" in question_type:
+                top = get_latest_leader('gle_cgdpc', maximize=True)
+                if top is not None:
+                    st.chat_message("assistant").write(f"Según los datos más recientes ({int(top['year'])}), el país más rico es **{top['cname']}** con un PIB per cápita de **${top['gle_cgdpc']:,.0f}**.")
+                else:
+                    st.warning("No hay datos suficientes de PIB.")
+            
+            elif "más corrupto" in question_type:
+                # V-Dem: Menor valor = Más corrupto
+                top = get_latest_leader('vdem_corr', maximize=False)
+                if top is not None:
+                    st.chat_message("assistant").write(f"El país con mayor percepción de corrupción (menor índice V-Dem, {int(top['year'])}) es **{top['cname']}** (Score: {top['vdem_corr']:.2f}).")
+                else:
+                    st.warning("No hay datos suficientes de Corrupción.")
+
+            elif "gasta más" in question_type:
+                top = get_latest_leader('wdi_expmil', maximize=True)
+                if top is not None:
+                    st.chat_message("assistant").write(f"El país con mayor gasto militar relativo ({int(top['year'])}) es **{top['cname']}**, invirtiendo un **{top['wdi_expmil']:.2f}%** de su riqueza en defensa.")
+                else:
+                    st.warning("No hay datos suficientes de Gasto Militar.")
+            
+            elif "más democrático" in question_type:
+                 top = get_latest_leader('p_polity2', maximize=True)
+                 if top is not None:
+                    st.chat_message("assistant").write(f"El líder democrático en la región ({int(top['year'])}) es **{top['cname']}** con un puntaje Polity IV de **{top['p_polity2']}/10**.")
+                 else:
+                    st.warning("No hay datos suficientes de Democracia.")

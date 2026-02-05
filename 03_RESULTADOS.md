@@ -1,6 +1,6 @@
-# 📊 Paso 4: Resultados y Análisis
+# 📊 Paso 3: Resultados y Análisis
 
-- **Alumno:** Antigravity Agent (en colaboración con el Usuario)
+- **Alumno:** Daniel Alexis Mendoza Corne
 - **Fecha:** Febrero 2026
 
 > [!IMPORTANT]
