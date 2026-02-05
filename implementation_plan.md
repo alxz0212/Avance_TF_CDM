@@ -110,3 +110,27 @@ Selección basada en el contexto del "Gran Juego" y la influencia post-soviétic
 
 1.  Ejecutar el script: `python src/pipeline.py`.
 2.  Verificar la generación de `data/processed/qog_great_game.parquet`.
+
+## Etapa 4: Análisis Avanzado y ML (Bloque C)
+
+### Objetivo
+
+Responder la pregunta de investigación mediante visualización de datos y un modelo de Machine Learning (**Random Forest**) para determinar la importancia de los factores geopolíticos vs democráticos en la economía.
+
+### Pregunta Refinada
+
+> "¿Son los factores de 'Poder Duro' (Gasto Militar) o de 'Poder Blando' (Democracia, Control de Corrupción) los que determinan el desarrollo económico en la periferia post-soviética?"
+
+### Metodología
+
+1.  **Carga de Datos**: Leer `data/processed/qog_great_game.parquet` con PySpark.
+2.  **Preparación ML**:
+    - `VectorAssembler` para unificar features: `wdi_expmil`, `p_polity2`, `vdem_corr`, `wdi_lifexp`.
+    - Target: `gle_cgdpc`.
+3.  **Modelado**: Entrenar `RandomForestRegressor`.
+4.  **Interpretación**: Extraer `featureImportances` y visualizar qué variable tiene mayor peso.
+
+### Verificación
+
+1.  Ejecutar el notebook `notebooks/02_analisis_gran_juego.ipynb`.
+2.  Obtener el gráfico de Importancia de Variables.

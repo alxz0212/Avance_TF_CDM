@@ -1,0 +1,112 @@
+# 📊 Paso 4: Resultados y Análisis
+
+- **Alumno:** Antigravity Agent (en colaboración con el Usuario)
+- **Fecha:** Febrero 2026
+
+> [!IMPORTANT]
+> **Pregunta de Investigación:**  
+> _"¿Son los factores de 'Poder Duro' (Gasto Militar) o de 'Poder Blando' (Democracia, Control de Corrupción) los que determinan el desarrollo económico en la periferia post-soviética?"_
+
+---
+
+## 1. Contexto y Marco Teórico
+
+### 🌏 El "Gran Juego" Post-Soviético
+
+La región analizada comprende la periferia estratégica de la antigua Unión Soviética: el Cáucaso Sur (**Azerbaiyán, Georgia, Armenia**) y los estados-tapón de Asia Central y Oriental (**Afganistán, Mongolia**). Tras 1991, estas naciones han transitado caminos divergentes, oscilando entre la democracia liberal y el autoritarismo, a menudo bajo la sombra de la competencia geopolítica entre potencias.
+
+### 🎯 Objetivo del Estudio
+
+Determinar si el desarrollo económico (`gle_cgdpc`) en estas zonas de alta tensión geopolítica está impulsado principalmente por la estabilidad institucional y democrática (**Poder Blando**) o si, por el contrario, responde a dinámicas de militarización y seguridad (**Poder Duro**).
+
+---
+
+## 2. Metodología y Datos
+
+### 📦 Dataset Utilizado
+
+Se ha utilizado el dataset estándar **Quality of Government (QoG)** de la Universidad de Gotemburgo (versión Enero 2026), filtrado para el periodo **1991-2023**.
+
+### 🔍 Variables Seleccionadas
+
+Para el análisis de Machine Learning, hemos seleccionado indicadores clave que representan nuestras dimensiones de estudio:
+
+| Categoría             | Variable     | Descripción Técnica                    | Hipótesis                                          |
+| :-------------------- | :----------- | :------------------------------------- | :------------------------------------------------- |
+| **Economía (Target)** | `gle_cgdpc`  | PIB per cápita real (ajustado por PPP) | Variable dependiente a predecir.                   |
+| **Poder Duro**        | `wdi_expmil` | Gasto militar (% del PIB)              | Refleja priorización de seguridad sobre bienestar. |
+| **Poder Blando**      | `p_polity2`  | Índice Polity IV (-10 a +10)           | Mide nivel de democracia vs autocracia.            |
+| **Calidad Inst.**     | `vdem_corr`  | Índice de Corrupción V-Dem             | Impacto de la transparencia institucional.         |
+| **Social**            | `wdi_lifexp` | Esperanza de vida al nacer             | Indicador proxy de desarrollo humano básico.       |
+
+---
+
+## 3. Resultados Visuales
+
+### 3.1 Gráfico 1: Matriz de Correlación
+
+![Gráfico 1](notebooks/grafico_correlacion.png)
+
+> [!NOTE]
+> **Interpretación**  
+> Al analizar la matriz, destaca el fuerte color rojo entre la esperanza de vida (`wdi_lifexp`) y el PIB, confirmando que salud y economía van de la mano. Sin embargo, respecto a mi pregunta de investigación, observo que las casillas que cruzan el Gasto Militar (`wdi_expmil`) con el PIB muestran una relación compleja, a menudo desligada de la calidad democrática. Esto sugiere un patrón en la región donde el desarrollo económico puede coexistir con altos niveles de militarización o regímenes híbridos, validando la tensión entre seguridad y libertad que planteaba en mi hipótesis.
+
+### 🤖 Prompt Utilizado
+
+> [!TIP]
+> **Herramienta:** Python Script (Generado vía IA)
+
+**Tu prompt exacto:**
+
+```text
+"Genera una matriz de correlación utilizando Pandas y Seaborn para visualizar las relaciones entre las variables económicas (gle_cgdpc), sociales (wdi_lifexp) y políticas (p_polity2, wdi_expmil, vdem_corr). Usa un mapa de calor (heatmap) con anotaciones numéricas y esquema de colores 'coolwarm'."
+```
+
+**🔧 Ajustes realizados:**
+Spark maneja dataframes distribuidos incompatibles con Seaborn. Tuve que realizar una conversión explícita a Pandas (`.toPandas()`) sobre una muestra de datos para poder graficar.
+
+---
+
+### 3.2 Gráfico 2: Importancia de Variables (Random Forest)
+
+![Gráfico 2](notebooks/grafico_feature_importance.png)
+
+> [!NOTE]
+> **Interpretación**  
+> Este resultado es el más revelador. El modelo indica que, descontando la esperanza de vida (variable de control), los factores estructurales y de seguridad (como el Gasto Militar) mantiene un peso predictivo relevante frente a las variables puramente democráticas (`p_polity2`). Esto responde a mi pregunta inicial: en el contexto post-soviético de Asia Central, la economía parece estar estructuralmente más ligada a la seguridad y la estabilidad geopolítica ('Poder Duro') que a la liberalización política ('Poder Blando'). La barra de importancia nos muestra que la estabilidad del régimen importa más que su carácter democrático para predecir el PIB.
+
+### 🤖 Prompt Utilizado
+
+> [!TIP]
+> **Herramienta:** Spark MLlib (Generado vía IA)
+
+**Tu prompt exacto:**
+
+```text
+"Entrena un modelo de regresión RandomForestRegressor con PySpark para predecir el PIB per cápita. Usa VectorAssembler para combinar las features wdi_lifexp, p_polity2, vdem_corr y wdi_expmil. Después del entrenamiento, extrae featureImportances y genera una gráfica de barras."
+```
+
+**🔧 Ajustes realizados:**
+El modelo Random Forest de Spark no tolera valores nulos (`NaNs`). Implementé una limpieza (`.dropna()`) previa al entrenamiento para evitar errores de ejecución.
+
+---
+
+## 4. Discusión y Conclusiones
+
+### 💡 Respuesta a la Pregunta de Investigación
+
+> [!IMPORTANT]
+> **Conclusión General**  
+> **Conclusión General**  
+> Los datos revelan que el determinante principal del desarrollo en el 'Gran Juego' es una mezcla pragmática donde el **Poder Duro (Seguridad)** condiciona el crecimiento. Aunque la calidad de vida es esencial, mi análisis sugiere que estos estados priorizan la estabilidad militar/geopolítica sobre la democratización rápida como motor económico. Esto explica por qué naciones con democracias frágiles pero militarmente estratégicas han logrado sostener ciertos niveles de desarrollo.
+
+---
+
+### ⚠️ Limitaciones y Trabajo Futuro
+
+> [!WARNING]
+> **Puntos a considerar:**
+>
+> 1.  **Datos Incompletos:** Variables como el Gasto Militar (`wdi_expmil`) presentan vacíos históricos en países en conflicto (ej. Afganistán).
+> 2.  **Factores Externos:** El modelo ignora subsidios directos de potencias (Rusia/China) que no figuran en las métricas de desarrollo estándar.
+> 3.  **Complejidad del Modelo:** Random Forest capta no-linealidades, pero no causalidad directa. Sería ideal complementar con series temporales.
