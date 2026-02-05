@@ -1,0 +1,79 @@
+================================================================================
+GUÍA RÁPIDA DE DESPLIEGUE DESDE CERO (CHEAT SHEET)
+Proyecto: Big Data & "Gran Juego" (Pipeline + ML + Dashboard)
+================================================================================
+
+PRERREQUISITOS:
+1. Tener Docker Desktop instalado y corriendo.
+2. Tener el código fuente descargado.
+3. Abrir una terminal (PowerShell o CMD) en la carpeta raíz del proyecto.
+
+--------------------------------------------------------------------------------
+PASO 1: LEVANTAR LA INFRAESTRUCTURA 🐳
+--------------------------------------------------------------------------------
+Enciende los servidores (Jupyter, Spark Master/Worker, Postgres).
+El flag '-d' lo hace en segundo plano.
+
+Comando:
+> docker-compose up -d
+
+Espera unos 30 segundos a que todo arranque.
+
+--------------------------------------------------------------------------------
+PASO 2: INSTALAR DEPENDENCIAS DEL DASHBOARD 📦
+--------------------------------------------------------------------------------
+Como Streamlit no viene en la imagen base de Spark, hay que instalarlo.
+Esto se hace una sola vez cada vez que recreas el contenedor.
+
+Comando:
+> docker exec jupyter_lab pip install streamlit plotly scikit-learn
+
+--------------------------------------------------------------------------------
+PASO 3: EJECUTAR EL PIPELINE DE DATOS (ETL) ⚙️
+--------------------------------------------------------------------------------
+Procesa el CSV crudo y genera el archivo Parquet limpio.
+
+Comando:
+> docker exec jupyter_lab python /home/jovyan/work/src/pipeline.py
+
+Deberías ver "Proceso ETL completado con éxito".
+
+--------------------------------------------------------------------------------
+PASO 4: ENTRENAR MODELO Y GENERAR GRÁFICOS (SPARK) 📊
+--------------------------------------------------------------------------------
+Calcula las correlaciones y entrena el Random Forest con PySpark.
+
+Comando:
+> docker exec jupyter_lab spark-submit /home/jovyan/work/src/analysis.py
+
+Esto generará las imágenes .png en la carpeta notebooks/.
+
+--------------------------------------------------------------------------------
+PASO 5: LANZAR LA "SUPER WEB" (DASHBOARD) 🚀
+--------------------------------------------------------------------------------
+Inicia el servidor de Streamlit en segundo plano.
+
+Comando:
+> docker exec -d jupyter_lab streamlit run /home/jovyan/work/src/app_streamlit.py
+
+--------------------------------------------------------------------------------
+ACCESOS 🌐
+--------------------------------------------------------------------------------
+
+🔹 DASHBOARD (Streamlit):   http://localhost:8501
+   (Aquí está tu web interactiva con el Bot IA)
+
+🔹 JUPYTER LAB:             http://localhost:8888
+   (Contraseña: bigdata2024 - Para ver el código o notebooks)
+
+🔹 SPARK MASTER:            http://localhost:8080
+   (Para ver el estado del cluster)
+
+--------------------------------------------------------------------------------
+CÓMO APAGAR TODO 🛑
+--------------------------------------------------------------------------------
+Cuando termines, elimina todo para limpiar tu máquina.
+
+Comando:
+> docker-compose down
+================================================================================
