@@ -3,25 +3,6 @@ GUÍA RÁPIDA DE DESPLIEGUE DESDE CERO (CHEAT SHEET)
 Proyecto: Big Data & "Gran Juego" (Pipeline + ML + Dashboard)
 ================================================================================
 
-6. Como actualizar en GitHub
-=====================================
-Si haces cambios en el codigo y quieres subirlos a tu repositorio:
-
-1.  Verificar estado de archivos modificados:
-    git status
-
-2.  Agregar todos los cambios al area de preparacion (stage):
-    git add .
-
-3.  Guardar los cambios con un mensaje descriptivo:
-    git commit -m "Mensaje explicando tus cambios"
-
-4.  Subir los cambios a GitHub:
-    git push origin main
-
-5.  (Opcional) Si hay cambios en el repositorio remoto que no tienes localmente:
-    git pull origin main
-===========================================
 
 PRERREQUISITOS:
 1. Tener Docker Desktop instalado y corriendo.
@@ -112,6 +93,26 @@ Cuando termines, elimina todo para limpiar tu máquina.
 
 Comando:
 > docker-compose down
+================================================================================
+CÓMO ACTUALIZAR EN GITHUB 🐙
+--------------------------------------------------------------------------------
+Si haces cambios en el codigo y quieres subirlos a tu repositorio:
+
+1.  Verificar estado de archivos modificados:
+    > git status
+
+2.  Agregar todos los cambios al area de preparacion (stage):
+    > git add .
+
+3.  Guardar los cambios con un mensaje descriptivo:
+    > git commit -m "Mensaje explicando tus cambios"
+
+4.  Subir los cambios a GitHub:
+    > git push origin main
+
+5.  (Opcional) Si hay cambios en el repositorio remoto que no tienes localmente:
+    > git pull origin main
+
 ================================================================================
 TROUBLESHOOTING / EXTRAS 🛠️
 --------------------------------------------------------------------------------
