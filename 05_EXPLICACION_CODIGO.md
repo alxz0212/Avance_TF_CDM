@@ -82,9 +82,41 @@ A continuación, se detalla la función técnica y de negocio de cada módulo de
 ## 3. Diagrama de Flujo de Datos
 
 ```mermaid
-graph LR
-    A[Internet] -->|download_data.py| B(Data Raw .csv)
-    B -->|pipeline.py| C(Data Processed .parquet)
-    C -->|analysis.py| D[Gráficos Estáticos]
-    C -->|app_streamlit.py| E[Web Interactiva]
+graph TD
+    %% Estilos
+    classDef source fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef script fill:#bbf,stroke:#333,stroke-width:2px,color:black;
+    classDef data fill:#dfd,stroke:#333,stroke-width:2px,color:black;
+    classDef output fill:#fd9,stroke:#333,stroke-width:2px,color:black,stroke-dasharray: 5 5;
+
+    subgraph INGESTA ["📡 Ingesta de Datos"]
+        A[☁️ Internet / Repo QoG]:::source
+        Script1{{🐍 download_data.py}}:::script
+    end
+
+    subgraph PROCESAMIENTO ["⚙️ Procesamiento Spark"]
+        Script2{{⚡ pipeline.py}}:::script
+        Script3{{🧠 analysis.py}}:::script
+    end
+
+    subgraph ALMACENAMIENTO ["💾 Almacenamiento"]
+        B[(📄 Raw CSV)]:::data
+        C[(📦 Clean Parquet)]:::data
+    end
+
+    subgraph VISUALIZACION ["📊 Consumo & UI"]
+        Script4{{🚀 app_streamlit.py}}:::script
+        D[📈 Gráficos Estáticos .png]:::output
+        E[🖥️ Dashboard Interactivo]:::output
+    end
+
+    %% Relaciones
+    A --> Script1
+    Script1 --> B
+    B --> Script2
+    Script2 --> C
+    C --> Script3
+    C --> Script4
+    Script3 --> D
+    Script4 --> E
 ```
