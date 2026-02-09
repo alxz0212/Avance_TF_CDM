@@ -83,16 +83,12 @@ def check_password():
     st.markdown(bg_css, unsafe_allow_html=True)
     
     # Columnas para posicionar el formulario en el espacio blanco (derecha)
-    # Ajustamos las proporciones según la imagen (parece mitad y mitad o 40/60)
-    col1, col2, col3 = st.columns([1, 1, 1]) 
-    
-    # Usamos cols vacías para empujar el contenido o centrarlo en la zona blanca.
-    # Si la imagen tiene el espacio a la DERECHA, usaremos una columna derecha.
-    col_left, col_right = st.columns([1.2, 1]) # Un poco más espacio a la izquierda para empujar la derecha
+    # Ajustamos para centrar en la mitad derecha (aprox 60% espacio, 30% form, 10% margen)
+    col_left, col_form, col_right = st.columns([2, 1, 0.2])
 
-    with col_right:
-        # Espacio superior para bajar los inputs y centrarlos verticalmente en la zona blanca
-        st.markdown("<br><br><br><br><br><br><br>", unsafe_allow_html=True) 
+    with col_form:
+        # Espacio superior para bajar los inputs y centrarlos verticalmente
+        st.markdown("<br><br><br><br><br><br><br><br>", unsafe_allow_html=True) 
         st.text_input("Usuario", key="username", value="Z2456962S", placeholder="Nombre de usuario")
         st.text_input("Contraseña", type="password", key="password", value="123456A", placeholder="Contraseña")
         
