@@ -309,7 +309,9 @@ with tab4:
         # Usamos columnas para centrar y reducir el tamaño del video (Efecto "Zoom" al poner pantalla completa)
         col_spacer1, col_vid, col_spacer2 = st.columns([1, 2, 1])
         with col_vid:
-            st.video("static/dashboard_demo.mp4")
+            import os
+            video_path = os.path.join(os.path.dirname(__file__), "static", "dashboard_demo.mp4")
+            st.video(video_path)
         
         # Eliminamos la inyección manual anterior para no duplicar
         video_html = ""
