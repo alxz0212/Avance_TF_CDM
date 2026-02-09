@@ -16,6 +16,92 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+# -----------------------------------------------------------------------------
+# AUTENTICACIÓN (LOGIN SCREEN)
+# -----------------------------------------------------------------------------
+def check_password():
+    """Returns `True` if the user had the correct password."""
+
+    # Inicializar estado
+    if "password_correct" not in st.session_state:
+        st.session_state["password_correct"] = False
+
+    def password_entered():
+        """Checks whether a password entered by the user is correct."""
+        if st.session_state["username"] == "Z2456962S" and st.session_state["password"] == "123456A":
+            st.session_state["password_correct"] = True
+            # Limpiar credenciales de la UI por seguridad
+            del st.session_state["password"]
+            del st.session_state["username"]
+        else:
+            st.session_state["password_correct"] = False
+
+    if st.session_state["password_correct"]:
+        return True
+
+    # Cargar fondo personalizado
+    import base64
+    def get_base64(bin_file):
+        with open(bin_file, 'rb') as f:
+            data = f.read()
+        return base64.b64encode(data).decode()
+    
+    bg_img_path = "/home/jovyan/work/src/static/login_bg.png"
+    bg_css = ""
+    try:
+        bin_str = get_base64(bg_img_path)
+        bg_css = f"""
+        <style>
+        .stApp {{
+            background-image: url("data:image/png;base64,{bin_str}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }}
+        [data-testid="stSidebar"] {{ display: none; }}
+        [data-testid="stHeader"] {{ visibility: hidden; }}
+        
+        .login-container {{
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            text-align: center;
+            margin-top: 100px;
+        }}
+        .login-header {{
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }}
+        </style>
+        """
+    except:
+        pass
+
+    # Renderizar estilos y contenedor visual
+    st.markdown(bg_css, unsafe_allow_html=True)
+    
+    # Columnas para centrar el formulario
+    col1, col2, col3 = st.columns([1, 1, 1])
+    
+    with col2:
+        st.markdown('<div class="login-container"><div class="login-header">🔐 AULA VIRTUAL GRUPO CDM FORMACIÓN</div>', unsafe_allow_html=True)
+        st.text_input("Usuario", key="username", placeholder="Nombre de usuario")
+        st.text_input("Contraseña", type="password", key="password", placeholder="Contraseña")
+        
+        if st.button("Acceder", on_click=password_entered):
+             if not st.session_state["password_correct"]:
+                st.error("Usuario o contraseña incorrectos")
+        
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    return False
+
+if not check_password():
+    st.stop()
+
 # Nota: Streamlit sirve archivos static automáticamente si existen en la carpeta 'static' junto al script.
 
 # Estilos CSS personalizados

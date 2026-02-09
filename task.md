@@ -14,6 +14,13 @@
   - [x] Preparación de datos (VectorAssembler) <!-- id: 11 -->
   - [x] Entrenamiento del modelo (Random Forest) <!-- id: 12 -->
   - [x] Evaluación (Importancia de Variables) <!-- id: 13 -->
+
 - [x] Etapa 4: Documentación y Entrega <!-- id: 14 -->
   - [x] Redactar `README.md` final <!-- id: 15 -->
   - [x] Resumen de planes y justificación <!-- id: 16 -->
+- [x] Etapa 5: Pulido Final y UI <!-- id: 17 -->
+  - [x] Prototipo en Video (07_PROTOTIPO.md) <!-- id: 18 -->
+  - [x] Reordenar Tabs del Dashboard <!-- id: 19 -->
+  - [x] Script de subida automática a GitHub <!-- id: 20 -->
+- [ ] Etapa 6: Seguridad y Acceso <!-- id: 21 -->
+  - [x] Implementar pantalla de Login (Usuario/Contraseña) <!-- id: 22 -->
