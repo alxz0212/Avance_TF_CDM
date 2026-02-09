@@ -253,12 +253,12 @@ with tab4:
     
     docs = {
         "ℹ️ README (General)": "01_README.md",
-        "🎥 Prototipo / Demo": "07_PROTOTIPO.md",
         "🏗️ Infraestructura": "02_INFRAESTRUCTURA.md",
-        "💻 Explicación Código": "05_EXPLICACION_CODIGO.md",
         "📊 Resultados y Análisis": "03_RESULTADOS.md",
         "🧠 Reflexión IA": "04_REFLEXION_IA.md",
-        "📝 Respuestas": "06_RESPUESTAS.md"
+        "💻 Explicación Código": "05_EXPLICACION_CODIGO.md",
+        "📝 Respuestas": "06_RESPUESTAS.md",
+        "🎥 Prototipo / Demo": "07_PROTOTIPO.md"
     }
     
     selected_doc_name = st.radio("Archivos Disponibles:", list(docs.keys()), horizontal=True)
