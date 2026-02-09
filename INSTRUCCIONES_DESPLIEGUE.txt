@@ -10,23 +10,11 @@ PRERREQUISITOS:
 3. Abrir una terminal (PowerShell o CMD) en la carpeta raíz del proyecto.
 
 --------------------------------------------------------------------------------
-PASO 0: PREPARACIÓN DE DATOS (IMPORTANTE) 📂
---------------------------------------------------------------------------------
-Antes de iniciar, necesitas el dataset "Quality of Government" (Time-Series).
-1. Crea la carpeta donde irán los datos raw.
-2. Coloca el archivo 'qog_std_ts_jan26.csv' dentro.
-
-Comando (PowerShell):
-Comando (PowerShell):
-> docker exec jupyter_lab python /home/jovyan/work/src/download_data.py
-
---------------------------------------------------------------------------------
-PASO 1: LEVANTAR LA INFRAESTRUCTURA 🐳
+PASO 0: LEVANTAR LA INFRAESTRUCTURA �
 --------------------------------------------------------------------------------
 Enciende los servidores (Jupyter, Spark Master/Worker, Postgres).
 El flag '-d' lo hace en segundo plano.
 
-Comando:
 Comando:
 > docker-compose up -d --build
 
@@ -35,6 +23,16 @@ NOTA: La primera vez puede tardar entre 5 y 10 minutos (descarga de imágenes).
 Las siguientes veces será casi instantáneo.
 
 --->*Docker debe estar abierto antes de ejecutar cualquier comando*
+
+--------------------------------------------------------------------------------
+PASO 1: PREPARACIÓN DE DATOS (IMPORTANTE) �
+--------------------------------------------------------------------------------
+Antes de iniciar, necesitas el dataset "Quality of Government" (Time-Series).
+1. Crea la carpeta donde irán los datos raw.
+2. Coloca el archivo 'qog_std_ts_jan26.csv' dentro.
+
+Comando (PowerShell):
+> docker exec jupyter_lab python /home/jovyan/work/src/download_data.py
 
 --------------------------------------------------------------------------------
 PASO 2: INSTALAR DEPENDENCIAS (Automático) 📦

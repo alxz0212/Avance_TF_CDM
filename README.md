@@ -38,6 +38,29 @@ A través de un pipeline automatizado, se procesaron décadas de datos históric
 
 ---
 
+## 🗺️ Estructura de Navegación
+
+<div class="grid-cards">
+    <a href="01_README.md" class="card-link">
+        <span class="card-title">🚀 Guía de Trabajo</span>
+        <span class="card-desc">Paso a paso para completar el proyecto.</span>
+    </a>
+    <a href="02_INFRAESTRUCTURA.md" class="card-link">
+        <span class="card-title">🐳 Infraestructura</span>
+        <span class="card-desc">Explicación técnica de Docker y servicios.</span>
+    </a>
+    <a href="05_EXPLICACION_CODIGO.md" class="card-link">
+        <span class="card-title">💻 Catálogo de Código</span>
+        <span class="card-desc">Documentación de scripts Python y ETL.</span>
+    </a>
+    <a href="03_RESULTADOS.md" class="card-link">
+        <span class="card-title">📊 Resultados y Hallazgos</span>
+        <span class="card-desc">Informe final con gráficos e interpretaciones.</span>
+    </a>
+</div>
+
+---
+
 ## 🏗️ Arquitectura del Sistema
 
 El proyecto implementa un flujo de datos moderno y contenerizado:
