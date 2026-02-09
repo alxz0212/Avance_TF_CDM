@@ -122,7 +122,7 @@ except Exception as e:
     st.sidebar.error(f"Error al cargar audio: {e}")
 
 # -----------------------------------------------------------------------------
-st.sidebar.title("🌏 Configuración v2.1")
+st.sidebar.title("🌏 Configuración v2.2")
 st.sidebar.markdown("---")
 
 if not df.empty:
@@ -411,9 +411,9 @@ with tab5:
             if gdp:
                 avg_gdp_region = df[df['year'] == gdp_yr]['gle_cgdpc'].mean()
                 status_eco = "superior" if gdp > avg_gdp_region else "inferior"
-                gdp_val_fmt = f"${gdp:,.0f}"
+                gdp_val_fmt = f"{gdp:,.0f} USD"
                 gdp_txt = f"{gdp_val_fmt} (dato {gdp_yr})"
-                comp_txt = f"${avg_gdp_region:,.0f}"
+                comp_txt = f"{avg_gdp_region:,.0f} USD"
             else:
                 status_eco, gdp_txt, comp_txt = "desconocido", "No disponible", "N/A"
                 gdp_val_fmt = "N/A"
