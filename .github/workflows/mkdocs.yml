@@ -21,5 +21,10 @@ jobs:
             - name: Instalar dependencias
               run: pip install mkdocs-material
 
+            - name: Configurar identidad Git
+              run: |
+                  git config --global user.name "github-actions[bot]"
+                  git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
             - name: Desplegar documentación
               run: mkdocs gh-deploy --force
