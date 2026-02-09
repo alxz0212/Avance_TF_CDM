@@ -30,6 +30,12 @@ theme:
     - search.highlight
     - search.share
     - content.code.copy
+    - content.tabs.link
+
+# Plugins
+plugins:
+  - search
+  - mermaid2
 
 # Extensiones Markdown
 markdown_extensions:

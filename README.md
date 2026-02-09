@@ -74,26 +74,26 @@ graph TD
     classDef output fill:#fd9,stroke:#333,stroke-width:2px,color:black,stroke-dasharray: 5 5;
 
     subgraph INGESTA ["📡 Ingesta de Datos"]
-        A[☁️ Internet / Repo QoG]:::source
-        Script1{{🐍 download_data.py}}:::script
+        A["☁️ Internet / Repo QoG"]:::source
+        Script1{{"🐍 download_data.py"}}:::script
     end
 
     subgraph PROCESAMIENTO ["⚙️ Procesamiento & Análisis"]
-        Script2{{⚡ pipeline.py}}:::script
-        Script3{{🧠 analysis.py}}:::script
-        Script5{{📉 econometric_analysis.py}}:::script
+        Script2{{"⚡ pipeline.py"}}:::script
+        Script3{{"🧠 analysis.py"}}:::script
+        Script5{{"📉 econometric_analysis.py"}}:::script
     end
 
     subgraph ALMACENAMIENTO ["💾 Almacenamiento"]
-        B[(📄 Raw CSV)]:::data
-        C[(📦 Clean Parquet)]:::data
+        B[("📄 Raw CSV")]:::data
+        C[("📦 Clean Parquet")]:::data
     end
 
     subgraph VISUALIZACION ["📊 Consumo & UI"]
-        Script4{{🚀 app_streamlit.py}}:::script
-        D[📈 Gráficos Estáticos .png]:::output
-        E[🖥️ Dashboard Interactivo]:::output
-        F[📄 Reporte Hausman .txt]:::output
+        Script4{{"🚀 app_streamlit.py"}}:::script
+        D["📈 Gráficos Estáticos .png"]:::output
+        E["🖥️ Dashboard Interactivo"]:::output
+        F["📄 Reporte Hausman .txt"]:::output
     end
 
     %% Relaciones
