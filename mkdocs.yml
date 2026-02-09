@@ -49,17 +49,17 @@ markdown_extensions:
 extra_css:
   - stylesheets/extra.css
 
-# Estructura de Navegación (Mapeo de archivos existentes)
+# Estructura de Navegación (Visual con Iconos)
 nav:
-  - Inicio: docs_landing.md
-  - Guía de Trabajo: 01_README.md
-  - Arquitectura Técnica:
-      - Infraestructura Docker: 02_INFRAESTRUCTURA.md
-      - Catálogo de Código: 05_EXPLICACION_CODIGO.md
-  - Análisis y Resultados:
-      - Hallazgos del Proyecto: 03_RESULTADOS.md
-      - Reflexión IA: 04_REFLEXION_IA.md
-      - Cuestionario Final: 06_RESPUESTAS.md
+  - "🏠 Inicio": README.md
+  - "🚀 Guía de Trabajo": 01_README.md
+  - "🏗️ Arquitectura Técnica":
+      - "🐳 Infraestructura Docker": 02_INFRAESTRUCTURA.md
+      - "💻 Catálogo de Código": 05_EXPLICACION_CODIGO.md
+  - "📊 Análisis y Resultados":
+      - "📈 Hallazgos del Proyecto": 03_RESULTADOS.md
+      - "🧠 Reflexión IA": 04_REFLEXION_IA.md
+      - "📝 Cuestionario Final": 06_RESPUESTAS.md
 
 # Configuración de Rutas
 docs_dir: . # Usar la raíz como fuente de documentación (Cuidado con esto)
