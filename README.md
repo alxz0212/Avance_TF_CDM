@@ -40,61 +40,22 @@ A través de un pipeline automatizado, se procesaron décadas de datos históric
 
 ## 🗺️ Estructura de Navegación
 
-<style>
-.grid-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-}
-.card-link {
-    display: block;
-    padding: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(30, 41, 59, 0.5);
-    border-radius: 10px;
-    color: var(--md-typeset-color);
-    text-decoration: none !important;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    border-left: 4px solid var(--md-primary-fg-color);
-}
-.card-link:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    border-color: var(--md-accent-fg-color);
-    background: rgba(30, 41, 59, 0.8);
-}
-.card-title {
-    font-weight: bold;
-    font-size: 1.1em;
-    color: var(--md-primary-fg-color);
-    margin-bottom: 5px;
-    display: block;
-}
-.card-desc {
-    font-size: 0.9em;
-    color: var(--md-typeset-color--light);
-    display: block;
-}
-</style>
-
-<div class="grid-cards">
-    <a href="01_README.md" class="card-link">
-        <span class="card-title">🚀 Guía de Trabajo</span>
-        <span class="card-desc">Paso a paso para completar el proyecto.</span>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+    <a href="01_README.md" style="display: block; padding: 20px; border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(30, 41, 59, 0.5); border-radius: 10px; color: inherit; text-decoration: none; border-left: 4px solid #00e5ff; transition: transform 0.3s ease;">
+        <span style="font-weight: bold; font-size: 1.1em; color: #00e5ff; display: block; margin-bottom: 5px;">🚀 Guía de Trabajo</span>
+        <span style="font-size: 0.9em; opacity: 0.8; display: block;">Paso a paso para completar el proyecto.</span>
     </a>
-    <a href="02_INFRAESTRUCTURA.md" class="card-link">
-        <span class="card-title">🐳 Infraestructura</span>
-        <span class="card-desc">Explicación técnica de Docker y servicios.</span>
+    <a href="02_INFRAESTRUCTURA.md" style="display: block; padding: 20px; border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(30, 41, 59, 0.5); border-radius: 10px; color: inherit; text-decoration: none; border-left: 4px solid #00e5ff; transition: transform 0.3s ease;">
+        <span style="font-weight: bold; font-size: 1.1em; color: #00e5ff; display: block; margin-bottom: 5px;">🐳 Infraestructura</span>
+        <span style="font-size: 0.9em; opacity: 0.8; display: block;">Explicación técnica de Docker y servicios.</span>
     </a>
-    <a href="05_EXPLICACION_CODIGO.md" class="card-link">
-        <span class="card-title">💻 Catálogo de Código</span>
-        <span class="card-desc">Documentación de scripts Python y ETL.</span>
+    <a href="05_EXPLICACION_CODIGO.md" style="display: block; padding: 20px; border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(30, 41, 59, 0.5); border-radius: 10px; color: inherit; text-decoration: none; border-left: 4px solid #00e5ff; transition: transform 0.3s ease;">
+        <span style="font-weight: bold; font-size: 1.1em; color: #00e5ff; display: block; margin-bottom: 5px;">💻 Catálogo de Código</span>
+        <span style="font-size: 0.9em; opacity: 0.8; display: block;">Documentación de scripts Python y ETL.</span>
     </a>
-    <a href="03_RESULTADOS.md" class="card-link">
-        <span class="card-title">📊 Resultados y Hallazgos</span>
-        <span class="card-desc">Informe final con gráficos e interpretaciones.</span>
+    <a href="03_RESULTADOS.md" style="display: block; padding: 20px; border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(30, 41, 59, 0.5); border-radius: 10px; color: inherit; text-decoration: none; border-left: 4px solid #00e5ff; transition: transform 0.3s ease;">
+        <span style="font-weight: bold; font-size: 1.1em; color: #00e5ff; display: block; margin-bottom: 5px;">📊 Resultados y Hallazgos</span>
+        <span style="font-size: 0.9em; opacity: 0.8; display: block;">Informe final con gráficos e interpretaciones.</span>
     </a>
 </div>
 
@@ -214,3 +175,5 @@ docker exec -d jupyter_lab streamlit run /home/jovyan/work/src/app_streamlit_pro
 │   └── app_streamlit.py        # Web App
 └── data/                       # Lakehouse (Raw + Processed)
 ```
+
+<small><i>Última actualización corrección visual: v2.0 (Inline Styles)</i></small>
