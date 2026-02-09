@@ -64,20 +64,5 @@ nav:
 # Configuración de Rutas
 docs_dir: . # Usar la raíz como fuente de documentación (Cuidado con esto)
 site_dir: site
-
 # Excluir archivos innecesarios de la build
-exclude_docs: |
-  .git/
-  .github/
-  .venv/
-  __pycache__/
-  docker/
-  data/
-  jars/
-  notebooks/
-  src/
-  *.txt
-  *.yml
-  *.yaml
-  LICENSE
-  Dockerfile
+
