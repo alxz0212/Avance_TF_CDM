@@ -122,7 +122,7 @@ except Exception as e:
     st.sidebar.error(f"Error al cargar audio: {e}")
 
 # -----------------------------------------------------------------------------
-st.sidebar.title("🌏 Configuración")
+st.sidebar.title("🌏 Configuración v2.1")
 st.sidebar.markdown("---")
 
 if not df.empty:
