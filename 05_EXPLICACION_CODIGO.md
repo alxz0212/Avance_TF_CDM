@@ -69,6 +69,19 @@ A continuación, se detalla la función técnica y de negocio de cada módulo de
   - **Feature Importance:** Extrae qué variables tuvieron más peso en la decisión del modelo.
 - **Salida:** Genera automáticamente los gráficos estáticos `.png` en la carpeta `notebooks/`.
 
+#### `econometric_analysis.py`
+- **Función:** Análisis Econométrico Riguroso.
+- **Tecnología:** Librería `linearmodels` (Python).
+- **Qué hace:**
+  - Ejecuta modelos de regresión para datos de panel: **Efectos Fijos (Fixed Effects)** y **Efectos Aleatorios (Random Effects)**.
+  - Implementa el **Test de Hausman** para determinar cuál de los dos modelos es estadísticamente más adecuado (causalidad vs correlación).
+  - Genera un reporte detallado en `notebooks/hausman_results.txt`.
+- **Valor agregado:** Complementa la "caja negra" del Machine Learning (Random Forest) con inferencia estadística clásica, validando si las características únicas de cada país sesgan los resultados.
+
+---
+
+### 🚀 4. Interfaz de Usuario (Frontend)
+
 #### `app_streamlit.py`
 - **Función:** Interfaz de Usuario (Frontend).
 - **Tecnología:** Streamlit + Plotly.
@@ -94,9 +107,10 @@ graph TD
         Script1{{🐍 download_data.py}}:::script
     end
 
-    subgraph PROCESAMIENTO ["⚙️ Procesamiento Spark"]
+    subgraph PROCESAMIENTO ["⚙️ Procesamiento & Análisis"]
         Script2{{⚡ pipeline.py}}:::script
         Script3{{🧠 analysis.py}}:::script
+        Script5{{📉 econometric_analysis.py}}:::script
     end
 
     subgraph ALMACENAMIENTO ["💾 Almacenamiento"]
@@ -108,6 +122,7 @@ graph TD
         Script4{{🚀 app_streamlit.py}}:::script
         D[📈 Gráficos Estáticos .png]:::output
         E[🖥️ Dashboard Interactivo]:::output
+        F[📄 Reporte Hausman .txt]:::output
     end
 
     %% Relaciones
@@ -117,6 +132,8 @@ graph TD
     Script2 --> C
     C --> Script3
     C --> Script4
+    C --> Script5
     Script3 --> D
     Script4 --> E
+    Script5 --> F
 ```

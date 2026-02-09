@@ -16,10 +16,11 @@ Completa los archivos en este orden. Cada numero indica la secuencia:
 | **3** | `src/verify_spark.py`         | Verificas la conexión con Spark             |
 | **4** | `src/pipeline.py`             | ETL: Limpieza y Transformación en Parquet   |
 | **5** | `src/analysis.py`             | Análisis con ML (Random Forest) en Spark    |
-| **6** | `03_RESULTADOS.md`            | Presentas graficos e interpretas resultados |
-| **7** | `04_REFLEXION_IA.md`          | Documentas tu proceso y pegas tus prompts   |
-| **8** | `05_EXPLICACION_CODIGO.md`    | Catálogo técnico de todos los scripts       |
-| **9** | `06_RESPUESTAS.md`            | Respondes 4 preguntas de comprension        |
+| **6** | `src/econometric_analysis.py` | Análisis Econométrico (Test de Hausman)     |
+| **7** | `03_RESULTADOS.md`            | Presentas graficos e interpretas resultados |
+| **8** | `04_REFLEXION_IA.md`          | Documentas tu proceso y pegas tus prompts   |
+| **9** | `05_EXPLICACION_CODIGO.md`    | Catálogo técnico de todos los scripts       |
+| **10** | `06_RESPUESTAS.md`            | Respondes 4 preguntas de comprension        |
 
 Los archivos `docker-compose.yml`, `requirements.txt` y `.gitignore` los completas conforme avanzas.
 
@@ -75,6 +76,7 @@ He creado la variable **`subregion`** para agrupar geográficamente a los paíse
 - [ ] Clustering (K-Means)
 - [ ] Serie temporal (evolucion por pais)
 - [x] Comparacion (Regresión Random Forest - Importancia de Factores)
+- [x] Modelo Econométrico (Panel Data - Efectos Fijos vs Aleatorios)
 
 ---
 
@@ -97,6 +99,11 @@ docker exec jupyter_lab python /home/jovyan/work/src/pipeline.py
 
 # Paso 5: Ejecutar Análisis y Generar Gráficos
 docker exec jupyter_lab spark-submit /home/jovyan/work/src/analysis.py
+
+# Paso 6: Ejecutar Análisis Econométrico (Hausman)
+# Nota: Ejecutar desde entorno con librerías 'linearmodels' instaladas (puede ser local si tienes entorno)
+docker exec jupyter_lab python /home/jovyan/work/src/econometric_analysis.py
+# (Si no corre en docker por falta de librerías, instalar: pip install linearmodels statsmodels)
 ```
 
 El análisis generará los gráficos en la carpeta `notebooks/` y el reporte final está en `03_RESULTADOS.md`.
@@ -114,7 +121,6 @@ El análisis generará los gráficos en la carpeta `notebooks/` y el reporte fin
 ├── 06_RESPUESTAS.md            # Preguntas de comprensión
 ├── INSTRUCCIONES_DESPLIEGUE.txt# Cheat Sheet con comandos para ejecutar
 ├── capturas/                   # Imágenes de evidencia
-│   └── ...
 ├── data/
 │   ├── processed/              # Datos transformados (Parquet)
 │   └── raw/                    # Dataset original (CSV)
@@ -126,12 +132,14 @@ El análisis generará los gráficos en la carpeta `notebooks/` y el reporte fin
 │   ├── 01_analisis_asia_central.ipynb # Notebook exploratorio
 │   ├── 02_analisis_gran_juego.ipynb   # Notebook principal del análisis
 │   ├── grafico_correlacion.png
-│   └── grafico_feature_importance.png
+│   ├── grafico_feature_importance.png
+│   └── hausman_results.txt
 ├── requirements.txt            # Dependencias Python
 └── src/
     ├── analysis.py             # Script de análisis ML (Spark-Submit)
     ├── app_streamlit.py        # Dashboard Interactivo Web
     ├── download_data.py        # Script de descarga automática
+    ├── econometric_analysis.py # Script econométrico (Hausman)
     ├── ingest_data.py          # Script de ingestión a Postgres (Legacy)
     ├── pipeline.py             # Script ETL (Limpieza y Transformación)
     └── verify_spark.py         # Test de conectividad Spark

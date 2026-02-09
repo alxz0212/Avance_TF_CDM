@@ -34,6 +34,8 @@ Espera a que se construya la imagen y arranque todo.
 NOTA: La primera vez puede tardar entre 5 y 10 minutos (descarga de imágenes).
 Las siguientes veces será casi instantáneo.
 
+--->*Docker debe estar abierto antes de ejecutar cualquier comando*
+
 --------------------------------------------------------------------------------
 PASO 2: INSTALAR DEPENDENCIAS (Automático) 📦
 --------------------------------------------------------------------------------
@@ -80,7 +82,7 @@ ACCESOS 🌐
 🔹 JUPYTER LAB:             http://localhost:8888
    (Contraseña: bigdata2024 - Para ver el código o notebooks)
 
-🔹 SPARK MASTER:            http://localhost:8080
+🔹 SPARK MASTER:            http://localhost:8081
    (Para ver el estado del cluster)
 
 🔹 SPARK JOB UI:            http://localhost:4040
@@ -126,4 +128,34 @@ A veces Streamlit no detecta cambios en el código. Para reiniciarlo "a la fuerz
 2. Inícialo de nuevo en segundo plano:
 > docker exec -d jupyter_lab streamlit run /home/jovyan/work/src/app_streamlit.py
 
+¿Error: "Ports are not available" o fallo de puerto?
+Esto pasa si el puerto (8080, 8081, etc.) está ocupado por otro programa en tu PC.
+
+Solución:
+1. Abre el archivo `docker-compose.yml`.
+2. Busca los `ports` del servicio que falla.
+3. Cambia el número de la IZQUIERDA (el de tu PC). 
+   Ejemplo: Cambiar "8081:8080" a "8085:8080".
+4. Vuelve a ejecutar: `docker-compose up -d`
+
 ================================================================================
+--------------------------------------------------------------------------------
+EJECUCIÓN RECURRENTE (SEGUNDA VEZ EN ADELANTE) 🔄
+--------------------------------------------------------------------------------
+Si ya realizaste la instalación inicial y solo quieres volver a arrancar el proyecto:
+
+1.  **¿DOCKER DESKTOP ABIERTO?**: SÍ. Es obligatorio que el programa "Docker Desktop" esté abierto y funcionando antes de tirar cualquier comando.
+
+2.  En tu terminal (carpeta del proyecto), ejecuta SOLO estos comandos:
+    
+    a) Levantar servicios:
+       > docker-compose up -d
+
+    b) (Opcional) Si quieres regenerar datos/modelos (si cambiaste algo):
+       > docker exec jupyter_lab python /home/jovyan/work/src/pipeline.py
+       > docker exec jupyter_lab spark-submit /home/jovyan/work/src/analysis.py
+
+    c) Lanzar la Web (Dashboard):
+       > docker exec -d jupyter_lab streamlit run /home/jovyan/work/src/app_streamlit.py
+
+    d) Ir a: http://localhost:8501

@@ -146,6 +146,12 @@ with tab1:
         fig_corr = px.imshow(corr_matrix, text_auto=True, aspect="auto", color_continuous_scale="RdBu_r",
                              title=f"Correlación ({', '.join(selected_countries)})")
         st.plotly_chart(fig_corr, use_container_width=True)
+        st.caption("""
+        ℹ️ **Interpretación de la Matriz:**
+        1. **Democracia vs Corrupción:** Existe una notable **correlación negativa** (aprox. -0.6). Esto sugiere que los países con mayores índices democráticos (`p_polity2`) tienden a tener menores niveles de corrupción (`vdem_corr`).
+        2. **Economía y Bienestar:** El PIB per cápita (`gle_cgdpc`) tiene una **correlación positiva** con la Esperanza de Vida (`wdi_lifexp`), confirmando que el desarrollo económico impulsa la longevidad.
+        3. **Poder Militar:** El Gasto Militar (`wdi_expmil`) correlaciona positivamente con el PIB, lo que indica que las economías más fuertes de la región tienen mayor capacidad para financiar sus fuerzas armadas (Poder Duro).
+        """)
 
 # -----------------------------------------------------------------------------
 # Tab 2: Modelo ML Interactivo

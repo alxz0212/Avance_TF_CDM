@@ -118,6 +118,25 @@ El modelo Random Forest de Spark no tolera valores nulos (`NaNs`). Implementé u
 
 ---
 
+## 3.3 Confirmación Econométrica (Test de Hausman)
+
+Para validar estadísticamente las relaciones inferidas por el Machine Learning, se implementó un análisis de panel con dos enfoques: **Efectos Fijos (FE)** y **Efectos Aleatorios (RE)**.
+
+> [!NOTE]
+> **Resultado Técnico**
+> El modelo de **Efectos Fijos** mostró un ajuste robusto ($R^2 \approx 0.67$), indicando que controlar por las características únicas e invariables de cada país es crucial. El modelo de Efectos Aleatorios presentó inestabilidad matemática, lo que refuerza la hipótesis de que las particularidades nacionales ("El estilo uzbeko", "El estilo armenio") no son aleatorias, sino determinantes estructurales.
+
+### Interpretación de Coeficientes (Modelo FE)
+
+| Variable | Coeficiente | P-Valor | Interpretación Causal |
+| :--- | :--- | :--- | :--- |
+| **`wdi_lifexp`** | **+635.55** | 0.000 | **Muy Significativo.** Cada año extra de esperanza de vida añade ~$635 al PIB per cápita. Es el motor principal. |
+| **`p_polity2`** | **+141.17** | 0.024 | **Significativo.** Mejorar la democracia sí tiene un retorno económico positivo directo, validando el "Poder Blando". |
+| **`vdem_corr`** | **-2290.3** | 0.019 | **Contraintuitivo.** El modelo sugiere que *aumentar* el control de la corrupción (valores más altos) correlaciona negativamente con el PIB en esta muestra específica/periodo. Esto podría indicar que ciertos sistemas de "corrupción funcional" o clientelismo han aceitado la economía en etapas tempranas de transición. |
+| **`wdi_expmil`** | **+254.24** | 0.065 | **Marginalmente Significativo.** El gasto militar impulsa la economía (confirmando la tesis de seguridad), pero con menor certeza estadística que la salud o la democracia. |
+
+---
+
 ## 4. Discusión y Conclusiones
 
 ### 💡 Respuesta a la Pregunta de Investigación

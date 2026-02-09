@@ -1,0 +1,41 @@
+=== ANÁLISIS ECONOMÉTRICO: EFECTOS FIJOS VS ALEATORIOS ===
+
+1. Modelo de Efectos Fijos (Entity Effects):
+                          PanelOLS Estimation Summary                           
+================================================================================
+Dep. Variable:              gle_cgdpc   R-squared:                        0.6731
+Estimator:                   PanelOLS   R-squared (Between):             -97.625
+No. Observations:                  76   R-squared (Within):               0.6731
+Date:                Mon, Feb 09 2026   R-squared (Overall):             -77.213
+Time:                        00:48:07   Log-likelihood                   -643.81
+Cov. Estimator:            Unadjusted                                           
+                                        F-statistic:                      35.007
+Entities:                           4   P-value                           0.0000
+Avg Obs:                       19.000   Distribution:                    F(4,68)
+Min Obs:                       16.000                                           
+Max Obs:                       21.000   F-statistic (robust):             35.007
+                                        P-value                           0.0000
+Time periods:                      21   Distribution:                    F(4,68)
+Avg Obs:                       3.6190                                           
+Min Obs:                       1.0000                                           
+Max Obs:                       4.0000                                           
+                                                                                
+                             Parameter Estimates                              
+==============================================================================
+            Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
+------------------------------------------------------------------------------
+wdi_lifexp     635.55     62.837     10.114     0.0000      510.16      760.94
+p_polity2      141.17     61.361     2.3007     0.0245      18.730      263.62
+vdem_corr     -2290.3     954.23    -2.4002     0.0191     -4194.5     -386.22
+wdi_expmil     254.24     135.61     1.8749     0.0651     -16.353      524.84
+==============================================================================
+
+F-test for Poolability: 29.648
+P-value: 0.0000
+Distribution: F(3,68)
+
+Included effects: Entity
+
+2. Modelo de Efectos Aleatorios: FALLÓ
+
+No se pudo realizar la comparación porque uno de los modelos falló.

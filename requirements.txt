@@ -9,4 +9,6 @@ plotly # Librería para gráficos interactivos y dinámicos
 scikit-learn # Algoritmos de Machine Learning y minería de datos
 graphviz # Renderizado de gráficos (útil para visualizar árboles, etc.)
 streamlit # Framework para crear dashboards web interactivos y rápidos
+linearmodels # Análisis econométrico de panel (Efectos Fijos/Aleatorios)
+statsmodels # Modelos estadísticos y pruebas de hipótesis
 
