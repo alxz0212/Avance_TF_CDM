@@ -40,24 +40,12 @@ A través de un pipeline automatizado, se procesaron décadas de datos históric
 
 ## 🗺️ Estructura de Navegación
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
-    <a href="01_README.md" style="display: block; padding: 20px; border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(30, 41, 59, 0.5); border-radius: 10px; color: inherit; text-decoration: none; border-left: 4px solid #00e5ff; transition: transform 0.3s ease;">
-        <span style="font-weight: bold; font-size: 1.1em; color: #00e5ff; display: block; margin-bottom: 5px;">🚀 Guía de Trabajo</span>
-        <span style="font-size: 0.9em; opacity: 0.8; display: block;">Paso a paso para completar el proyecto.</span>
-    </a>
-    <a href="02_INFRAESTRUCTURA.md" style="display: block; padding: 20px; border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(30, 41, 59, 0.5); border-radius: 10px; color: inherit; text-decoration: none; border-left: 4px solid #00e5ff; transition: transform 0.3s ease;">
-        <span style="font-weight: bold; font-size: 1.1em; color: #00e5ff; display: block; margin-bottom: 5px;">🐳 Infraestructura</span>
-        <span style="font-size: 0.9em; opacity: 0.8; display: block;">Explicación técnica de Docker y servicios.</span>
-    </a>
-    <a href="05_EXPLICACION_CODIGO.md" style="display: block; padding: 20px; border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(30, 41, 59, 0.5); border-radius: 10px; color: inherit; text-decoration: none; border-left: 4px solid #00e5ff; transition: transform 0.3s ease;">
-        <span style="font-weight: bold; font-size: 1.1em; color: #00e5ff; display: block; margin-bottom: 5px;">💻 Catálogo de Código</span>
-        <span style="font-size: 0.9em; opacity: 0.8; display: block;">Documentación de scripts Python y ETL.</span>
-    </a>
-    <a href="03_RESULTADOS.md" style="display: block; padding: 20px; border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(30, 41, 59, 0.5); border-radius: 10px; color: inherit; text-decoration: none; border-left: 4px solid #00e5ff; transition: transform 0.3s ease;">
-        <span style="font-weight: bold; font-size: 1.1em; color: #00e5ff; display: block; margin-bottom: 5px;">📊 Resultados y Hallazgos</span>
-        <span style="font-size: 0.9em; opacity: 0.8; display: block;">Informe final con gráficos e interpretaciones.</span>
-    </a>
-</div>
+| 🧭 Sección | 📝 Descripción |
+| :--- | :--- |
+| **[🚀 Guía de Trabajo](01_README.md)** | Paso a paso para completar el proyecto. Instrucciones detalladas. |
+| **[🐳 Infraestructura](02_INFRAESTRUCTURA.md)** | Explicación técnica de Docker, servicios y redes. |
+| **[💻 Catálogo de Código](05_EXPLICACION_CODIGO.md)** | Documentación técnica de scripts Python (`src/`) y Pipeline ETL. |
+| **[📊 Resultados](03_RESULTADOS.md)** | Informe final con gráficos, modelos y hallazgos del "Gran Juego". |
 
 ---
 
@@ -176,4 +164,4 @@ docker exec -d jupyter_lab streamlit run /home/jovyan/work/src/app_streamlit_pro
 └── data/                       # Lakehouse (Raw + Processed)
 ```
 
-<small><i>Última actualización corrección visual: v2.0 (Inline Styles)</i></small>
+<small><i>Última actualización corrección visual: v3.0 (Markdown Table)</i></small>
