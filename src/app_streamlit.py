@@ -87,7 +87,7 @@ def check_password():
     col1, col2, col3 = st.columns([1, 1, 1])
     
     with col2:
-        st.markdown('<div class="login-container"><div class="login-header">🔐 AULA VIRTUAL GRUPO CDM FORMACIÓN</div>', unsafe_allow_html=True)
+        st.markdown('<div class="login-container">', unsafe_allow_html=True)
         st.text_input("Usuario", key="username", value="Z2456962S", placeholder="Nombre de usuario")
         st.text_input("Contraseña", type="password", key="password", value="123456A", placeholder="Contraseña")
         
