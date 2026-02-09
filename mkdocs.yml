@@ -63,7 +63,7 @@ extra_css:
 
 # Estructura de Navegación (Visual con Iconos)
 nav:
-  - "🏠 Inicio": README.md
+  - "🏠 Inicio": index.md
   - "🚀 Guía de Trabajo": 01_README.md
   - "🏗️ Arquitectura Técnica":
       - "🐳 Infraestructura Docker": 02_INFRAESTRUCTURA.md
@@ -74,7 +74,7 @@ nav:
       - "📝 Cuestionario Final": 06_RESPUESTAS.md
 
 # Configuración de Rutas
-docs_dir: . # Usar la raíz como fuente de documentación (Cuidado con esto)
+# Configuración de Rutas
 site_dir: site
 # Excluir archivos innecesarios de la build
 
