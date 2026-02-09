@@ -40,6 +40,45 @@ A través de un pipeline automatizado, se procesaron décadas de datos históric
 
 ## 🗺️ Estructura de Navegación
 
+<style>
+.grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+.card-link {
+    display: block;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(30, 41, 59, 0.5);
+    border-radius: 10px;
+    color: var(--md-typeset-color);
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border-left: 4px solid var(--md-primary-fg-color);
+}
+.card-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border-color: var(--md-accent-fg-color);
+    background: rgba(30, 41, 59, 0.8);
+}
+.card-title {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: var(--md-primary-fg-color);
+    margin-bottom: 5px;
+    display: block;
+}
+.card-desc {
+    font-size: 0.9em;
+    color: var(--md-typeset-color--light);
+    display: block;
+}
+</style>
+
 <div class="grid-cards">
     <a href="01_README.md" class="card-link">
         <span class="card-title">🚀 Guía de Trabajo</span>
