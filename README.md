@@ -6,10 +6,14 @@
     <img src="capturas/profile.jpg" alt="Daniel Alexis Mendoza Corne" width="150" style="border-radius: 50%;"/>
     <h3>👤 Daniel Alexis Mendoza Corne</h3>
     <p>
-        <b>Carrera:</b> Ingeniería Informática y de Sistemas  <br> 
-        <b>Nacionalidad:</b> Peruana 🇵🇪 <br>
+        <img src="https://flagcdn.com/24x18/pe.png" alt="Bandera Perú"> <b>Ingeniería Informática y de Sistemas</b> |
         <a href="https://www.linkedin.com/in/alexismendoza12/">
-            <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
+            <img src="https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat&logo=linkedin" alt="LinkedIn">
+        </a>
+    </p>
+    <p>
+        <a href="https://alxz0212.github.io/TF_BigData_CDM/">
+            <img src="https://img.shields.io/badge/📚_Ver_Documentación_Oficial-Click_Aquí-success?style=for-the-badge&logo=materialformkdocs" alt="Docs">
         </a>
     </p>
 </div>

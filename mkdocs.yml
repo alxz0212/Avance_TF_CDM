@@ -1,0 +1,79 @@
+site_name: "Docs: El Gran Juego Post-Soviético"
+site_url: "https://alxz0212.github.io/TF_BigData_CDM/"
+repo_url: "https://github.com/alxz0212/TF_BigData_CDM"
+repo_name: "TF_BigData_CDM"
+site_description: "Documentación oficial del proyecto de Big Data y Geopolítica."
+site_author: "Daniel Alexis Mendoza Corne"
+
+theme:
+  name: material
+  language: es
+  palette:
+    # Modo Oscuro por defecto
+    - scheme: slate
+      primary: cyan
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: Cambiar a modo claro
+    # Modo Claro alternativo
+    - scheme: default
+      primary: cyan
+      accent: amber
+      toggle:
+        icon: material/weather-sunny
+        name: Cambiar a modo oscuro
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - search.highlight
+    - search.share
+    - content.code.copy
+
+# Extensiones Markdown
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - tables
+  - attr_list
+
+# Estructura de Navegación (Mapeo de archivos existentes)
+nav:
+  - Inicio: README.md
+  - Guía de Trabajo: 01_README.md
+  - Arquitectura Técnica:
+      - Infraestructura Docker: 02_INFRAESTRUCTURA.md
+      - Catálogo de Código: 05_EXPLICACION_CODIGO.md
+  - Análisis y Resultados:
+      - Hallazgos del Proyecto: 03_RESULTADOS.md
+      - Reflexión IA: 04_REFLEXION_IA.md
+      - Cuestionario Final: 06_RESPUESTAS.md
+
+# Configuración de Rutas
+docs_dir: . # Usar la raíz como fuente de documentación (Cuidado con esto)
+site_dir: site
+
+# Excluir archivos innecesarios de la build
+exclude_docs: |
+  .git/
+  .github/
+  .venv/
+  __pycache__/
+  docker/
+  data/
+  jars/
+  notebooks/
+  src/
+  *.txt
+  *.yml
+  *.yaml
+  LICENSE
+  Dockerfile
