@@ -45,9 +45,13 @@ markdown_extensions:
   - tables
   - attr_list
 
+# CSS Personalizado
+extra_css:
+  - stylesheets/extra.css
+
 # Estructura de Navegación (Mapeo de archivos existentes)
 nav:
-  - Inicio: README.md
+  - Inicio: docs_landing.md
   - Guía de Trabajo: 01_README.md
   - Arquitectura Técnica:
       - Infraestructura Docker: 02_INFRAESTRUCTURA.md
