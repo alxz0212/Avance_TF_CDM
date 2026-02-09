@@ -71,6 +71,24 @@ df = load_data()
 
 # -----------------------------------------------------------------------------
 # 2. Sidebar y Filtros
+    st.sidebar.markdown("---")
+    st.sidebar.header("🎵 Música de Fondo")
+    
+    # Ruta al archivo de audio
+    audio_path = "/home/jovyan/work/src/static/spy_glass.mp3"
+    
+    # Leer el archivo de audio
+    try:
+        if os.path.exists(audio_path):
+            with open(audio_path, "rb") as audio_file:
+                audio_bytes = audio_file.read()
+            st.sidebar.audio(audio_bytes, format="audio/mp3", start_time=0)
+            st.sidebar.caption("🎧 *Spy Glass* by Kevin MacLeod (incompetech.com). Licensed under CC BY 4.0")
+        else:
+            st.sidebar.error("No se encontró el archivo de audio.")
+    except Exception as e:
+        st.sidebar.error(f"Error al cargar audio: {e}")
+
 # -----------------------------------------------------------------------------
 st.sidebar.title("🌏 Configuración")
 st.sidebar.markdown("---")
