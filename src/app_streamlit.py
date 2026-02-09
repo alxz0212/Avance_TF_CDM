@@ -46,7 +46,7 @@ def check_password():
             data = f.read()
         return base64.b64encode(data).decode()
     
-    bg_img_path = "/home/jovyan/work/src/static/login_bg.png"
+    bg_img_path = "/home/jovyan/work/src/static/login_bg_v2.png"
     bg_css = ""
     try:
         bin_str = get_base64(bg_img_path)
@@ -61,19 +61,18 @@ def check_password():
         [data-testid="stSidebar"] {{ display: none; }}
         [data-testid="stHeader"] {{ visibility: hidden; }}
         
-        .login-container {{
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            text-align: center;
-            margin-top: 100px;
-        }}
         .login-header {{
             font-size: 24px;
             font-weight: bold;
             color: #333;
             margin-bottom: 20px;
+        }}
+        /* Estilar los inputs para que se vean integrados */
+        .stTextInput > div > div > input {{
+            background-color: transparent; 
+            border: none;
+            border-bottom: 2px solid #ccc;
+            border-radius: 0;
         }}
         </style>
         """
@@ -83,22 +82,23 @@ def check_password():
     # Renderizar estilos y contenedor visual
     st.markdown(bg_css, unsafe_allow_html=True)
     
-    # Columnas para centrar el formulario
-    col1, col2, col3 = st.columns([1, 1, 1])
+    # Columnas para posicionar el formulario en el espacio blanco (derecha)
+    # Ajustamos las proporciones según la imagen (parece mitad y mitad o 40/60)
+    col1, col2, col3 = st.columns([1, 1, 1]) 
     
-    with col2:
-        # st.markdown('<div class="login-container">', unsafe_allow_html=True)
-        st.markdown("<br><br><br><br><br>", unsafe_allow_html=True) # Espacio para bajar los inputs
+    # Usamos cols vacías para empujar el contenido o centrarlo en la zona blanca.
+    # Si la imagen tiene el espacio a la DERECHA, usaremos una columna derecha.
+    col_left, col_right = st.columns([1.2, 1]) # Un poco más espacio a la izquierda para empujar la derecha
+
+    with col_right:
+        # Espacio superior para bajar los inputs y centrarlos verticalmente en la zona blanca
+        st.markdown("<br><br><br><br><br><br><br>", unsafe_allow_html=True) 
         st.text_input("Usuario", key="username", value="Z2456962S", placeholder="Nombre de usuario")
         st.text_input("Contraseña", type="password", key="password", value="123456A", placeholder="Contraseña")
         
         if st.button("Acceder", on_click=password_entered):
              if not st.session_state["password_correct"]:
                 st.error("Usuario o contraseña incorrectos")
-        
-        # st.markdown('</div>', unsafe_allow_html=True)
-
-    return False
 
 if not check_password():
     st.stop()
