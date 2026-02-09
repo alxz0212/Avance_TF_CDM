@@ -411,10 +411,12 @@ with tab5:
             if gdp:
                 avg_gdp_region = df[df['year'] == gdp_yr]['gle_cgdpc'].mean()
                 status_eco = "superior" if gdp > avg_gdp_region else "inferior"
-                gdp_txt = f"**${gdp:,.0f}** (dato {gdp_yr})"
+                gdp_val_fmt = f"${gdp:,.0f}"
+                gdp_txt = f"{gdp_val_fmt} (dato {gdp_yr})"
                 comp_txt = f"${avg_gdp_region:,.0f}"
             else:
                 status_eco, gdp_txt, comp_txt = "desconocido", "No disponible", "N/A"
+                gdp_val_fmt = "N/A"
 
             trend_dem = "estable"
             if pol is not None:
@@ -422,8 +424,8 @@ with tab5:
                 if pd.notna(first_pol):
                     trend_dem = "mejorando" if pol > first_pol else "empeorando" if pol < first_pol else "igual"
             
-            pol_txt = f"**{pol}** ({pol_yr})" if pol is not None else "No disponible"
-            mil_txt = f"**{mil:.2f}%** ({mil_yr})" if mil is not None else "No disponible"
+            pol_val = f"{pol}" if pol is not None else "No disponible"
+            mil_val = f"{mil:.2f}%" if mil is not None else "No disponible"
             
             wdi_expmil_val = mil if mil is not None else 0.0
 
@@ -431,11 +433,11 @@ with tab5:
             ### 🕵️ Análisis de Inteligencia para **{report_country}**
             
             **1. Situación Económica:**
-            El PIB per cápita más reciente es de {gdp_txt}, lo cual es **{status_eco}** al promedio de la región en ese año ({comp_txt}).
+            El PIB per cápita más reciente es de **{gdp_val_fmt}** (año {gdp_yr}), lo cual es **{status_eco}** al promedio de la región ({comp_txt}).
             
             **2. Perfil de Poder:**
-            {report_country} muestra un Gasto Militar del {mil_txt} del PIB. 
-            En términos políticos, su índice democrático es {pol_txt} (escala -10 a 10), mostrando una tendencia **{trend_dem}** respecto al inicio del periodo.
+            {report_country} muestra un Gasto Militar del **{mil_val}** del PIB. 
+            En términos políticos, su índice democrático es **{pol_val}** (escala -10 a 10), mostrando una tendencia **{trend_dem}**.
             
             **3. Conclusión Algorítmica:**
             Este perfil sugiere un estado que prioriza {'la seguridad (Poder Duro)' if wdi_expmil_val > 3.0 else 'el desarrollo civil/mixto'}.
