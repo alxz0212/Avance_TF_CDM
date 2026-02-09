@@ -122,7 +122,11 @@ docker exec jupyter_lab spark-submit /home/jovyan/work/src/analysis.py
 docker exec jupyter_lab python /home/jovyan/work/src/econometric_analysis.py
 
 # 6. Lanzar Dashboard Web (http://localhost:8501)
+# Opción A: Versión Clásica
 docker exec -d jupyter_lab streamlit run /home/jovyan/work/src/app_streamlit.py
+
+# Opción B: Versión PRO (3D Command Center) 🌟
+docker exec -d jupyter_lab streamlit run /home/jovyan/work/src/app_streamlit_pro.py
 ```
 
 ---

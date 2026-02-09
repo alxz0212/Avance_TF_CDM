@@ -82,13 +82,16 @@ A continuación, se detalla la función técnica y de negocio de cada módulo de
 
 ### 🚀 4. Interfaz de Usuario (Frontend)
 
-#### `app_streamlit.py`
-- **Función:** Interfaz de Usuario (Frontend).
-- **Tecnología:** Streamlit + Plotly.
-- **Qué hace:**
-  - Levanta un servidor web interactivo en el puerto `8501`.
-  - Permite al usuario explorar los datos: filtrar por año, ver tendencias temporales interactivas y simular predicciones.
-  - Es la "cara" del proyecto, transformando el código técnico en un producto visual consumible por un usuario final.
+#### `src/app_streamlit.py` y `src/app_streamlit_pro.py`
+Son el Frontend de la aplicación.
+- **Tecnología:** Streamlit.
+- **Funciones:**
+    - Cargar el Parquet procesado.
+    - Generar gráficos interactivos con Plotly.
+    - **Pro Version:** Incluye globo 3D, radar charts y estética "Dark Mode".
+    - Sirve una interfaz web en el puerto `8501`.
+    - Permite al usuario explorar los datos: filtrar por año, ver tendencias temporales interactivas y simular predicciones.
+    - Es la "cara" del proyecto, transformando el código técnico en un producto visual consumible por un usuario final.
 
 ---
 
@@ -119,9 +122,9 @@ graph TD
     end
 
     subgraph VISUALIZACION ["📊 Consumo & UI"]
-        Script4{{🚀 app_streamlit.py}}:::script
+        Script4{{🚀 app_streamlit_pro.py}}:::script
         D[📈 Gráficos Estáticos .png]:::output
-        E[🖥️ Dashboard Interactivo]:::output
+        E[🖥️ Dashboard 3D Interactivo]:::output
         F[📄 Reporte Hausman .txt]:::output
     end
 

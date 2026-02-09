@@ -79,8 +79,11 @@ PASO 6: LANZAR LA "SUPER WEB" (DASHBOARD) 🚀
 --------------------------------------------------------------------------------
 Inicia el servidor de Streamlit en segundo plano.
 
-Comando:
+Comando (Versión Clásica):
 > docker exec -d jupyter_lab streamlit run /home/jovyan/work/src/app_streamlit.py
+
+Comando (Versión PRO 3D) 🌟:
+> docker exec -d jupyter_lab streamlit run /home/jovyan/work/src/app_streamlit_pro.py
 
 --------------------------------------------------------------------------------
 ACCESOS 🌐
@@ -167,6 +170,7 @@ Si ya realizaste la instalación inicial y solo quieres volver a arrancar el pro
        > docker exec jupyter_lab python /home/jovyan/work/src/econometric_analysis.py
 
     c) Lanzar la Web (Dashboard):
-       > docker exec -d jupyter_lab streamlit run /home/jovyan/work/src/app_streamlit.py
+       > docker exec -d jupyter_lab streamlit run /home/jovyan/work/src/app_streamlit_pro.py
+       (O usa 'app_streamlit.py' para la versión clásica)
 
     d) Ir a: http://localhost:8501
