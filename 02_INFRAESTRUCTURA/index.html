@@ -1,0 +1,959 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Documentación oficial del proyecto de Big Data y Geopolítica." name="description"/>
+<meta content="Daniel Alexis Mendoza Corne" name="author"/>
+<link href="https://alxz0212.github.io/TF_BigData_CDM/02_INFRAESTRUCTURA/" rel="canonical"/>
+<link href="../01_README/" rel="prev"/>
+<link href="../05_EXPLICACION_CODIGO/" rel="next"/>
+<link href="../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.7.1" name="generator"/>
+<title>🐳 Infraestructura Docker - Docs: El Gran Juego Post-Soviético</title>
+<link href="../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../stylesheets/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="amber" data-md-color-primary="cyan" data-md-color-scheme="slate" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#paso-2-infraestructura-docker">
+          Saltar a contenido
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Cabecera" class="md-header__inner md-grid">
+<a aria-label="Docs: El Gran Juego Post-Soviético" class="md-header__button md-logo" data-md-component="logo" href=".." title="Docs: El Gran Juego Post-Soviético">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Docs: El Gran Juego Post-Soviético
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              🐳 Infraestructura Docker
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Cambiar a modo claro" class="md-option" data-md-color-accent="amber" data-md-color-media="" data-md-color-primary="cyan" data-md-color-scheme="slate" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Cambiar a modo claro">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+</label>
+<input aria-label="Cambiar a modo oscuro" class="md-option" data-md-color-accent="amber" data-md-color-media="" data-md-color-primary="cyan" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Cambiar a modo oscuro">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+</label>
+</form>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Búsqueda" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Búsqueda" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Buscar" class="md-search__options">
+<a aria-label="Compartir" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="Compartir">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+</a>
+<button aria-label="Limpiar" class="md-search__icon md-icon" tabindex="-1" title="Limpiar" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/alxz0212/TF_BigData_CDM" title="Ir al repositorio">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    TF_BigData_CDM
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="Pestañas" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="..">
+        
+  
+  
+    
+  
+  🏠 Inicio
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../01_README/">
+        
+  
+  
+    
+  
+  🚀 Guía de Trabajo
+
+      </a>
+</li>
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="./">
+          
+  
+  
+  🏗️ Arquitectura Técnica
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../03_RESULTADOS/">
+          
+  
+  
+  📊 Análisis y Resultados
+
+        </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navegación" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Docs: El Gran Juego Post-Soviético" class="md-nav__button md-logo" data-md-component="logo" href=".." title="Docs: El Gran Juego Post-Soviético">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+    Docs: El Gran Juego Post-Soviético
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/alxz0212/TF_BigData_CDM" title="Ir al repositorio">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    TF_BigData_CDM
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="..">
+<span class="md-ellipsis">
+    
+  
+    🏠 Inicio
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../01_README/">
+<span class="md-ellipsis">
+    
+  
+    🚀 Guía de Trabajo
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+<span class="md-ellipsis">
+    
+  
+    🏗️ Arquitectura Técnica
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    🏗️ Arquitectura Técnica
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    
+  
+    🐳 Infraestructura Docker
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    
+  
+    🐳 Infraestructura Docker
+  
+
+    
+  </span>
+</a>
+<nav aria-label="Tabla de contenidos" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#21-mi-docker-composeyml-explicado">
+<span class="md-ellipsis">
+      
+        2.1 Mi docker-compose.yml explicado
+      
+    </span>
+</a>
+<nav aria-label="2.1 Mi docker-compose.yml explicado" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#servicio-postgresql">
+<span class="md-ellipsis">
+      
+        Servicio: PostgreSQL
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#servicio-spark-master">
+<span class="md-ellipsis">
+      
+        Servicio: Spark Master
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#servicio-spark-worker">
+<span class="md-ellipsis">
+      
+        Servicio: Spark Worker
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#otros-servicios-jupyterlab">
+<span class="md-ellipsis">
+      
+        Otros servicios: JupyterLab
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#acceso-y-credenciales">
+<span class="md-ellipsis">
+      
+        Acceso y Credenciales
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#comandos-de-ejecucion-importante">
+<span class="md-ellipsis">
+      
+        Comandos de Ejecución (Importante)
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#22-healthchecks">
+<span class="md-ellipsis">
+      
+        2.2 Healthchecks
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#23-evidencia-captura-spark-ui">
+<span class="md-ellipsis">
+      
+        2.3 Evidencia: Captura Spark UI
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#24-prompts-utilizados-para-la-infraestructura">
+<span class="md-ellipsis">
+      
+        2.4 Prompts utilizados para la infraestructura
+      
+    </span>
+</a>
+<nav aria-label="2.4 Prompts utilizados para la infraestructura" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prompt-1-creacion-inicial">
+<span class="md-ellipsis">
+      
+        Prompt 1: Creación inicial
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prompt-2-refinamiento-de-jupyter-y-red">
+<span class="md-ellipsis">
+      
+        Prompt 2: Refinamiento de Jupyter y Red
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#25-recursos-web-consultados">
+<span class="md-ellipsis">
+      
+        2.5 Recursos web consultados
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#26-evidencia-adicional">
+<span class="md-ellipsis">
+      
+        2.6 Evidencia Adicional
+      
+    </span>
+</a>
+<nav aria-label="2.6 Evidencia Adicional" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#docker-desktop-contenedores-corriendo">
+<span class="md-ellipsis">
+      
+        Docker Desktop: Contenedores corriendo
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#jupyter-lab-notebook-de-analisis">
+<span class="md-ellipsis">
+      
+        Jupyter Lab: Notebook de Análisis
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#spark-job-ui-detalle-de-ejecucion">
+<span class="md-ellipsis">
+      
+        Spark Job UI: Detalle de Ejecución
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#27-concepto-docker-y-contenedores">
+<span class="md-ellipsis">
+      
+        2.7 Concepto: Docker y Contenedores
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../05_EXPLICACION_CODIGO/">
+<span class="md-ellipsis">
+    
+  
+    💻 Catálogo de Código
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    📊 Análisis y Resultados
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    📊 Análisis y Resultados
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../03_RESULTADOS/">
+<span class="md-ellipsis">
+    
+  
+    📈 Hallazgos del Proyecto
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../04_REFLEXION_IA/">
+<span class="md-ellipsis">
+    
+  
+    🧠 Reflexión IA
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../06_RESPUESTAS/">
+<span class="md-ellipsis">
+    
+  
+    📝 Cuestionario Final
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Tabla de contenidos" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#21-mi-docker-composeyml-explicado">
+<span class="md-ellipsis">
+      
+        2.1 Mi docker-compose.yml explicado
+      
+    </span>
+</a>
+<nav aria-label="2.1 Mi docker-compose.yml explicado" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#servicio-postgresql">
+<span class="md-ellipsis">
+      
+        Servicio: PostgreSQL
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#servicio-spark-master">
+<span class="md-ellipsis">
+      
+        Servicio: Spark Master
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#servicio-spark-worker">
+<span class="md-ellipsis">
+      
+        Servicio: Spark Worker
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#otros-servicios-jupyterlab">
+<span class="md-ellipsis">
+      
+        Otros servicios: JupyterLab
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#acceso-y-credenciales">
+<span class="md-ellipsis">
+      
+        Acceso y Credenciales
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#comandos-de-ejecucion-importante">
+<span class="md-ellipsis">
+      
+        Comandos de Ejecución (Importante)
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#22-healthchecks">
+<span class="md-ellipsis">
+      
+        2.2 Healthchecks
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#23-evidencia-captura-spark-ui">
+<span class="md-ellipsis">
+      
+        2.3 Evidencia: Captura Spark UI
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#24-prompts-utilizados-para-la-infraestructura">
+<span class="md-ellipsis">
+      
+        2.4 Prompts utilizados para la infraestructura
+      
+    </span>
+</a>
+<nav aria-label="2.4 Prompts utilizados para la infraestructura" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prompt-1-creacion-inicial">
+<span class="md-ellipsis">
+      
+        Prompt 1: Creación inicial
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prompt-2-refinamiento-de-jupyter-y-red">
+<span class="md-ellipsis">
+      
+        Prompt 2: Refinamiento de Jupyter y Red
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#25-recursos-web-consultados">
+<span class="md-ellipsis">
+      
+        2.5 Recursos web consultados
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#26-evidencia-adicional">
+<span class="md-ellipsis">
+      
+        2.6 Evidencia Adicional
+      
+    </span>
+</a>
+<nav aria-label="2.6 Evidencia Adicional" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#docker-desktop-contenedores-corriendo">
+<span class="md-ellipsis">
+      
+        Docker Desktop: Contenedores corriendo
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#jupyter-lab-notebook-de-analisis">
+<span class="md-ellipsis">
+      
+        Jupyter Lab: Notebook de Análisis
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#spark-job-ui-detalle-de-ejecucion">
+<span class="md-ellipsis">
+      
+        Spark Job UI: Detalle de Ejecución
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#27-concepto-docker-y-contenedores">
+<span class="md-ellipsis">
+      
+        2.7 Concepto: Docker y Contenedores
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="paso-2-infraestructura-docker">Paso 2: Infraestructura Docker</h1>
+<ul>
+<li><strong>Alumno:</strong> Daniel Alexis Mendoza Corne</li>
+<li><strong>Fecha:</strong> Febrero 2026</li>
+</ul>
+<hr/>
+<h2 id="21-mi-docker-composeyml-explicado">2.1 Mi docker-compose.yml explicado</h2>
+<h3 id="servicio-postgresql">Servicio: PostgreSQL</h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nt">postgres</span><span class="p">:</span>
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres:13</span>
+<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">  </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres_db</span>
+<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">  </span><span class="nt">environment</span><span class="p">:</span>
+<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="nt">POSTGRES_USER</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">user</span>
+<a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">    </span><span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">password</span>
+<a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">    </span><span class="nt">POSTGRES_DB</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">qog_data</span>
+<a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
+<a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"5432:5432"</span>
+<a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">  </span><span class="nt">volumes</span><span class="p">:</span>
+<a href="#__codelineno-0-11" id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data/postgres:/var/lib/postgresql/data</span>
+<a href="#__codelineno-0-12" id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">  </span><span class="nt">networks</span><span class="p">:</span>
+<a href="#__codelineno-0-13" id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bigdata-net</span>
+</code></pre></div>
+<p><strong>Que hace:</strong>
+Este servicio levanta una base de datos relacional PostgreSQL versión 13.</p>
+<ul>
+<li><code>container_name</code>: Le da un nombre fijo (<code>postgres_db</code>) para que otros contenedores (como Spark o Jupyter) puedan encontrarlo fácilmente en la red interna usando ese nombre como si fuera un dominio DNS.</li>
+<li><code>environment</code>: Define las credenciales (usuario/contraseña) y el nombre de la base de datos que se creará automáticamente al iniciar.</li>
+<li><code>ports</code>: Mapea el puerto 5432 del contenedor al 5432 de mi máquina local ("host"), permitiéndome conectarme desde fuera de Docker (por ejemplo, con DBeaver).</li>
+<li><code>volumes</code>: Crea una persistencia de datos. Si borro el contenedor, los datos guardados en <code>/var/lib/postgresql/data</code> (dentro del contenedor) se conservan en mi carpeta local <code>./data/postgres</code>.</li>
+<li><code>networks</code>: Conecta el servicio a una red compartida (<code>bigdata-net</code>) para hablar con los otros servicios.</li>
+</ul>
+<h3 id="servicio-spark-master">Servicio: Spark Master</h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nt">spark-master</span><span class="p">:</span>
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apache/spark:3.5.1</span>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">  </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spark_master</span>
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">  </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spark-master</span>
+<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">  </span><span class="nt">environment</span><span class="p">:</span>
+<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SPARK_MODE=master</span>
+<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SPARK_RPC_AUTHENTICATION_ENABLED=no</span>
+<a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SPARK_RPC_ENCRYPTION_ENABLED=no</span>
+<a href="#__codelineno-1-9" id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no</span>
+<a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SPARK_SSL_ENABLED=no</span>
+<a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">  </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/spark/bin/spark-class org.apache.spark.deploy.master.Master</span>
+<a href="#__codelineno-1-12" id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
+<a href="#__codelineno-1-13" id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"8080:8080"</span><span class="w"> </span><span class="c1"># Web UI</span>
+<a href="#__codelineno-1-14" id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"7077:7077"</span><span class="w"> </span><span class="c1"># Master URL</span>
+<a href="#__codelineno-1-15" id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">  </span><span class="nt">volumes</span><span class="p">:</span>
+<a href="#__codelineno-1-16" id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./jars:/opt/spark/jars</span><span class="w"> </span><span class="c1"># Compartir drivers</span>
+<a href="#__codelineno-1-17" id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="w">  </span><span class="nt">networks</span><span class="p">:</span>
+<a href="#__codelineno-1-18" id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bigdata-net</span>
+</code></pre></div>
+<p><strong>Que hace:</strong>
+Es el nodo coordinador ("cerebro") del cluster Spark.</p>
+<ul>
+<li><strong>Rol</strong>: Gestiona los recursos disponibles y asigna las tareas de procesamiento a los Workers. No procesa datos pesados él mismo, solo orquesta.</li>
+<li><strong>Puertos</strong>:</li>
+<li><code>8080</code>: Expone la interfaz web (Spark UI) donde puedo ver el estado del cluster, los workers conectados y los jobs en ejecución.</li>
+<li><code>7077</code>: Es el puerto de comunicación interna que usan los Workers y los Clientes (como Jupyter) para enviar trabajos al Master.</li>
+<li><strong>Red</strong>: Necesita la red compartida para que el Worker pueda decir "Hola, estoy aquí" enviando mensajes a <code>spark-master:7077</code>.</li>
+</ul>
+<h3 id="servicio-spark-worker">Servicio: Spark Worker</h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nt">spark-worker</span><span class="p">:</span>
+<a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apache/spark:3.5.1</span>
+<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">  </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spark_worker</span>
+<a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">  </span><span class="nt">environment</span><span class="p">:</span>
+<a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SPARK_MODE=worker</span>
+<a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SPARK_WORKER_MEMORY=1G</span>
+<a href="#__codelineno-2-7" id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SPARK_WORKER_CORES=1</span>
+<a href="#__codelineno-2-8" id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">    </span><span class="c1"># ... (configuraciones de seguridad desactivadas)</span>
+<a href="#__codelineno-2-9" id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">  </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077</span>
+<a href="#__codelineno-2-10" id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="w">  </span><span class="nt">depends_on</span><span class="p">:</span>
+<a href="#__codelineno-2-11" id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spark-master</span>
+<a href="#__codelineno-2-12" id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="w">  </span><span class="nt">volumes</span><span class="p">:</span>
+<a href="#__codelineno-2-13" id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./jars:/opt/spark/jars</span><span class="w"> </span><span class="c1"># Compartir drivers</span>
+<a href="#__codelineno-2-14" id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="w">  </span><span class="nt">networks</span><span class="p">:</span>
+<a href="#__codelineno-2-15" id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bigdata-net</span>
+</code></pre></div>
+<p><strong>Que hace:</strong>
+Es el "músculo" del cluster. Es quien realmente ejecuta los cálculos.</p>
+<ul>
+<li><strong>Conexión</strong>: En el comando de inicio (<code>command</code>) le especificamos explícitamente <code>spark://spark-master:7077</code>. Así sabe a quién reportarse.</li>
+<li><strong>Recursos</strong>: Le asigné 1 Core (<code>SPARK_WORKER_CORES=1</code>) y 1GB de RAM (<code>SPARK_WORKER_MEMORY=1G</code>). Si agrego más workers (escalado horizontal), tendría más capacidad de procesamiento paralelo total.</li>
+<li><strong>Drivers</strong>: Monta el volumen <code>./jars</code> igual que el master y jupyter para asegurarse de tener las mismas librerías (como el driver de PostgreSQL) disponibles.</li>
+</ul>
+<h3 id="otros-servicios-jupyterlab">Otros servicios: JupyterLab</h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="nt">jupyter-lab</span><span class="p">:</span>
+<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jupyter/pyspark-notebook:latest</span>
+<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">  </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jupyter_lab</span>
+<a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
+<a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"8888:8888"</span><span class="w"> </span><span class="c1"># JupyterLab</span>
+<a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"4040:4040"</span><span class="w"> </span><span class="c1"># Spark UI (Driver)</span>
+<a href="#__codelineno-3-7" id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="w">  </span><span class="nt">environment</span><span class="p">:</span>
+<a href="#__codelineno-3-8" id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">JUPYTER_ENABLE_LAB=yes</span>
+<a href="#__codelineno-3-9" id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">JUPYTER_TOKEN=bigdata2024</span><span class="w"> </span><span class="c1"># Contraseña fija</span>
+<a href="#__codelineno-3-10" id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SPARK_MASTER=spark://spark-master:7077</span>
+<a href="#__codelineno-3-11" id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SPARK_DRIVER_HOST=jupyter_lab</span>
+<a href="#__codelineno-3-12" id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="w">  </span><span class="c1"># ...</span>
+</code></pre></div>
+<p><strong>Que hace:</strong>
+Actúa como mi "Cliente" o "Driver" interactivo. Es donde escribo el código Python (PySpark).</p>
+<ul>
+<li>Se conecta al Master (<code>SPARK_MASTER</code>) para enviar el código a ejecutar.</li>
+<li>Expone el puerto <code>4040</code> para ver el detalle de la ejecución de <em>mi</em> aplicación específica.</li>
+</ul>
+<h3 id="acceso-y-credenciales">Acceso y Credenciales</h3>
+<p>Para acceder a JupyterLab:</p>
+<ul>
+<li><strong>URL</strong>: <code>http://localhost:8888</code></li>
+<li><strong>Password/Token</strong>: <code>bigdata2024</code> (Configurado en <code>docker-compose.yml</code>)</li>
+</ul>
+<h3 id="comandos-de-ejecucion-importante">Comandos de Ejecución (Importante)</h3>
+<p>Dado que nuestro entorno está en Docker, debemos ejecutar los scripts <strong>dentro</strong> del contenedor, no desde nuestro Windows local.</p>
+<p><strong>1. Instalar dependencias nuevas:</strong></p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">jupyter_lab</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">-r</span> <span class="p">/</span><span class="n">home</span><span class="p">/</span><span class="n">jovyan</span><span class="p">/</span><span class="n">work</span><span class="p">/</span><span class="n">requirements</span><span class="p">.</span><span class="n">txt</span>
+</code></pre></div>
+<p><strong>2. Ejecutar Pipeline ETL:</strong></p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">jupyter_lab</span> <span class="n">spark-submit</span> <span class="p">/</span><span class="n">home</span><span class="p">/</span><span class="n">jovyan</span><span class="p">/</span><span class="n">work</span><span class="p">/</span><span class="n">src</span><span class="p">/</span><span class="n">pipeline</span><span class="p">.</span><span class="n">py</span>
+</code></pre></div>
+<hr/>
+<h2 id="22-healthchecks">2.2 Healthchecks</h2>
+<p><strong>¿Qué son?</strong>
+Un healthcheck es un comando que Docker ejecuta periódicamente dentro del contenedor para preguntar: "¿Estás realmente listo para trabajar?".</p>
+<p><strong>¿Por qué los necesitamos?</strong>
+Docker por defecto solo sabe si el contenedor "arrancó" (el proceso existe), pero no si la <em>aplicación</em> está lista.</p>
+<ul>
+<li><strong>Ejemplo</strong>: PostgreSQL puede tardar 10 segundos en iniciar y aceptar conexiones.</li>
+<li><strong>Sin healthcheck</strong>: Si Spark o mi script de ingesta intenta conectarse en el segundo 2, fallará con un error de conexión, aunque Docker diga que la base de datos está "running".</li>
+<li><strong>Con healthcheck</strong>: Podríamos configurar los servicios dependientes para que esperen (<code>condition: service_healthy</code>) hasta que Postgres diga "estoy listo" (select 1), evitando errores de inicio por condiciones de carrera (race conditions).</li>
+</ul>
+<hr/>
+<h2 id="23-evidencia-captura-spark-ui">2.3 Evidencia: Captura Spark UI</h2>
+<p><img alt="SparkUI" src="../capturas/localhost_8080.png"/></p>
+<p><strong>Que se ve en la captura (esperado):</strong></p>
+<ul>
+<li><strong>URL</strong>: <code>spark://spark-master:7077</code>.</li>
+<li><strong>Workers</strong>: Debería aparecer <code>1</code> en la lista de "Alive Workers".</li>
+<li><strong>Status</strong>: El estado del Worker debe ser <code>ALIVE</code>.</li>
+<li><strong>Resources</strong>: Debería mostrar <code>1 Cores</code> y <code>1024.0 MiB Memory</code> disponibles.</li>
+</ul>
+<hr/>
+<h2 id="24-prompts-utilizados-para-la-infraestructura">2.4 Prompts utilizados para la infraestructura</h2>
+<h3 id="prompt-1-creacion-inicial">Prompt 1: Creación inicial</h3>
+<p><strong>Herramienta:</strong> Agentic AI (Google DeepMind)</p>
+<p><strong>Tu prompt exacto:</strong></p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a>(Reconstruido del contexto de la sesión inicial)
+<a href="#__codelineno-6-2" id="__codelineno-6-2" name="__codelineno-6-2"></a>Necesito configurar un proyecto de Big Data usando Docker.
+<a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a>Quiero tener un pipeline que use:
+<a href="#__codelineno-6-4" id="__codelineno-6-4" name="__codelineno-6-4"></a>1. PostgreSQL para guardar datos.
+<a href="#__codelineno-6-5" id="__codelineno-6-5" name="__codelineno-6-5"></a>2. Un cluster de Spark (Master y Worker) para procesar los datos.
+<a href="#__codelineno-6-6" id="__codelineno-6-6" name="__codelineno-6-6"></a>3. JupyterLab para ejecutar notebooks y conectarse a Spark.
+<a href="#__codelineno-6-7" id="__codelineno-6-7" name="__codelineno-6-7"></a>Por favor crea la estructura de carpetas y el archivo docker-compose.yml necesario.
+</code></pre></div>
+<p><strong>Que te devolvio:</strong>
+Generó un archivo <code>docker-compose.yml</code> inicial con los 4 servicios solicitados, usando imágenes estándar (<code>postgres:13</code>, <code>bitnami/spark</code> o <code>apache/spark</code>, <code>jupyter/pyspark-notebook</code>) y definió una red <code>bigdata-net</code>.</p>
+<p><strong>Que tuviste que cambiar y por que:</strong></p>
+<ul>
+<li>Tuvimos problemas iniciales con las imágenes de <code>bitnami/spark</code> por temas de permisos de usuario (Running as root vs non-root).</li>
+<li><strong>Cambio</strong>: Migramos a usar las imágenes oficiales <code>apache/spark:3.5.1</code> que resultaron más estables para este entorno.</li>
+<li><strong>Ajuste</strong>: Añadimos volúmenes explícitos para compartir drivers (<code>./jars</code>) entre todos los contenedores, algo que no estaba en la primera versión básica pero fue necesario para conectar Spark con Postgres.</li>
+</ul>
+<h3 id="prompt-2-refinamiento-de-jupyter-y-red">Prompt 2: Refinamiento de Jupyter y Red</h3>
+<p><strong>Herramienta:</strong> Agentic AI</p>
+<p><strong>Tu prompt exacto:</strong></p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a>(Reconstruido)
+<a href="#__codelineno-7-2" id="__codelineno-7-2" name="__codelineno-7-2"></a>El contenedor de Jupyter tiene problemas de permisos para instalar librerías y no ve al Spark Master.
+<a href="#__codelineno-7-3" id="__codelineno-7-3" name="__codelineno-7-3"></a>Asegúrate de que Jupyter esté en la misma red y configura las variables de entorno para que se conecte al master en spark://spark-master:7077.
+<a href="#__codelineno-7-4" id="__codelineno-7-4" name="__codelineno-7-4"></a>Además, necesito persistir los notebooks en una carpeta local.
+</code></pre></div>
+<p><strong>Que te devolvio y que cambiaste:</strong>
+Actualizó la configuración de <code>jupyter-lab</code> añadiendo <code>SPARK_DRIVER_HOST=jupyter_lab</code> (crucial para que los Workers puedan "devolver la llamada" al Driver) y mapeó correctamente los volúmenes <code>./notebooks</code> y <code>./data</code>.</p>
+<hr/>
+<h2 id="25-recursos-web-consultados">2.5 Recursos web consultados</h2>
+<table>
+<thead>
+<tr>
+<th>Recurso</th>
+<th>URL</th>
+<th>Que aprendiste de el</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Docker Hub (Postgres)</td>
+<td>https://hub.docker.com/_/postgres</td>
+<td>Variables de entorno necesarias (POSTGRES_USER, DB)</td>
+</tr>
+<tr>
+<td>Spark Documentation</td>
+<td>https://spark.apache.org/docs/latest/spark-standalone.html</td>
+<td>Puertos requeridos (8080, 7077) y configuración de Master/Worker</td>
+</tr>
+<tr>
+<td>Jupyter Docker Stacks</td>
+<td>https://jupyter-docker-stacks.readthedocs.io/</td>
+<td>Cómo configurar PySpark dentro del contenedor de Jupyter</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="26-evidencia-adicional">2.6 Evidencia Adicional</h2>
+<h3 id="docker-desktop-contenedores-corriendo">Docker Desktop: Contenedores corriendo</h3>
+<p>Aquí vemos todos los servicios del <code>docker-compose.yml</code> activos y funcionando.</p>
+<p><img alt="Docker Desktop" src="../capturas/docker_desktop.png"/></p>
+<h3 id="jupyter-lab-notebook-de-analisis">Jupyter Lab: Notebook de Análisis</h3>
+<p>Evidencia del entorno de trabajo conectado a Spark y ejecutando código.</p>
+<p><img alt="Jupyter Notebook" src="../capturas/jupyter_notebook.png"/></p>
+<h3 id="spark-job-ui-detalle-de-ejecucion">Spark Job UI: Detalle de Ejecución</h3>
+<p>Evidencia de los "Jobs" (tareas) de Spark completados correctamente durante la ejecución del Random Forest.</p>
+<p><img alt="Spark Jobs UI" src="../capturas/spark_jobs_ui.png"/></p>
+<hr/>
+<h2 id="27-concepto-docker-y-contenedores">2.7 Concepto: Docker y Contenedores</h2>
+<p><strong>¿Cómo se une Docker con los Contenedores?</strong></p>
+<p>Esta gráfica explica la relación entre la Imagen (la receta), el Contenedor (la tarta) y el Docker Engine (el horno).</p>
+<p><img alt="Diagrama Docker" src="../capturas/docker_concept_mermaid.png"/></p>
+<p><strong>Explicación:</strong></p>
+<ol>
+<li><strong>Docker Engine</strong>: Es el software que instalaste. Actúa como el intermediario entre tu sistema operativo y los contenedores.</li>
+<li><strong>Imágenes</strong>: Son plantillas estáticas (como una clase en POO o una receta de cocina). En nuestro caso, <code>apache/spark</code> es la imagen.</li>
+<li><strong>Contenedores</strong>: Son la versión "viva" de la imagen. Cuando le das "Play", Docker Engine toma la imagen y crea un proceso aislado (el contenedor). Nota cómo usamos la <strong>misma</strong> imagen de Spark para crear <strong>dos</strong> contenedores distintos (Master y Worker), simplemente cambiándoles la configuración al arrancar.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a>
+</code></pre></div>
+</article>
+</div>
+<script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.highlight", "search.share", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+<script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+</body>
+</html>
