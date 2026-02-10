@@ -84,8 +84,8 @@ def check_password():
     
     # Columnas para posicionar el formulario en el espacio blanco (derecha)
     # Ajustamos para centrar en la mitad derecha (aprox 60% espacio, 30% form, 10% margen)
-    # Usuario pidió "reduce un poco no tan largo" -> Reducimos ancho form (0.6) y ajustamos márgenes
-    col_left, col_form, col_right = st.columns([1.9, 0.6, 1.2])
+    # Usuario pidió "más a la derecha y centrado" -> Aumentamos ratio izq a 2.2
+    col_left, col_form, col_right = st.columns([2.2, 0.6, 0.9])
 
     with col_form:
         # Espacio superior para bajar los inputs y centrarlos verticalmente
