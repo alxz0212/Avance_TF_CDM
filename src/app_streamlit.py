@@ -84,12 +84,12 @@ def check_password():
     
     # Columnas para posicionar el formulario en el espacio blanco (derecha)
     # Ajustamos para centrar en la mitad derecha (aprox 60% espacio, 30% form, 10% margen)
-    # Aumentamos el offset izquierdo para asegurar que entre en el recuadro blanco
-    col_left, col_form, col_right = st.columns([2.5, 1, 0.2])
+    # Usuario pidió "un poco a la izquierda y abajo" -> Bajamos ratio izq a 2.2 y más BR
+    col_left, col_form, col_right = st.columns([2.2, 1, 0.2])
 
     with col_form:
         # Espacio superior para bajar los inputs y centrarlos verticalmente
-        st.markdown("<br><br><br><br><br><br><br><br>", unsafe_allow_html=True) 
+        st.markdown("<br><br><br><br><br><br><br><br><br><br>", unsafe_allow_html=True) 
         st.text_input("Usuario", key="username", value="Z2456962S", placeholder="Nombre de usuario")
         st.text_input("Contraseña", type="password", key="password", value="123456A", placeholder="Contraseña")
         
