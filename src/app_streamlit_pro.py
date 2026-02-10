@@ -92,7 +92,14 @@ st.markdown("""
     footer {visibility: hidden;}
 
     /* Optimización para Impresión (PDF) */
+    /* Optimización para Impresión (PDF) */
     @media print {
+        /* Forzar impresión de fondos (Oscuros) */
+        * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
         /* Ocultar elementos de UI */
         [data-testid="stSidebar"], 
         header, 
@@ -100,19 +107,23 @@ st.markdown("""
         .stDeployButton {
             display: none !important;
         }
-        /* Fondo blanco para ahorrar tinta */
+        
+        /* Mantener estilo oscuro en impresión si el usuario lo desea */
         .stApp, .stApp > header {
-            background-color: white !important;
-            color: black !important;
+            background-color: #0e1117 !important;
+            color: #e0e0e0 !important;
         }
-        /* Forzar color negro en textos */
-        h1, h2, h3, p, div, span, label {
-            color: black !important;
-        }
-        /* Ajustar ancho */
+        
+        /* Ajustar ancho para PDF A4/Letter */
         .main .block-container {
             max-width: 100% !important;
-            padding: 0 !important;
+            padding: 1rem !important;
+        }
+        
+        /* Evitar cortes en gráficos */
+        .stPlotlyChart, div[data-testid="stMetricValue"] {
+            break-inside: avoid;
+            page-break-inside: avoid;
         }
     }
 </style>
@@ -158,20 +169,17 @@ if not df_yr.empty:
 
 
 # -----------------------------------------------------------------------------
-# 4. Panel Principal (Tabs)
+# 4. Funciones de Renderizado (Modularización para Reportes)
 # -----------------------------------------------------------------------------
-st.write("")
-tab_geo, tab_vs, tab_ai, tab_raw = st.tabs(["🌍 GLOBAL SITUATION ROOM", "⚔️ HEAD-TO-HEAD", "🤖 AI SIMULATOR", "📄 DATA SOURCE"])
-
-# --- TAB 1: SITUATION ROOM (Globo 3D) ---
-with tab_geo:
+def render_geo_dashboard(df_target):
+    st.markdown("## 🌍 GLOBAL SITUATION ROOM")
     row_geo = st.columns([2, 1])
     
     with row_geo[0]:
         st.subheader(f"🗺️ PROYECCIÓN GEOPOLÍTICA ({selected_year})")
-        if not df_yr.empty:
+        if not df_target.empty:
             # Preparar datos geoespaciales
-            map_data = df_yr.copy()
+            map_data = df_target.copy()
             # Añadir lat/lon desde config
             map_data['lat'] = map_data['cname'].map(lambda x: COUNTRY_CONFIG.get(x, {}).get('lat', 0))
             map_data['lon'] = map_data['cname'].map(lambda x: COUNTRY_CONFIG.get(x, {}).get('lon', 0))
@@ -204,8 +212,8 @@ with tab_geo:
             
     with row_geo[1]:
         st.subheader("📊 RANKING DE PODER")
-        if not df_yr.empty:
-            top_mil = df_yr[['cname', 'wdi_expmil', 'gle_cgdpc']].sort_values('wdi_expmil', ascending=False)
+        if not df_target.empty:
+            top_mil = df_target[['cname', 'wdi_expmil', 'gle_cgdpc']].sort_values('wdi_expmil', ascending=False)
             
             for index, row in top_mil.iterrows():
                 flag = COUNTRY_CONFIG.get(row['cname'], {}).get('flag', '')
@@ -219,18 +227,18 @@ with tab_geo:
             
             st.info("ℹ️ El tamaño de las esferas en el globo representa el PIB, el color indica la militarización.")
 
-# --- TAB 2: HEAD-TO-HEAD (Comparador Radar) ---
-with tab_vs:
+def render_pvp_analysis(df_target):
+    st.markdown("## ⚔️ HEAD-TO-HEAD")
     st.subheader("⚔️ ANÁLISIS COMPARATIVO DIRECTO")
     
     col_sel1, col_sel2 = st.columns(2)
     p1 = col_sel1.selectbox("PAÍS A (Blue Team)", list(COUNTRY_CONFIG.keys()), index=0)
     p2 = col_sel2.selectbox("PAÍS B (Red Team)", list(COUNTRY_CONFIG.keys()), index=1)
     
-    if not df_yr.empty and p1 and p2:
+    if not df_target.empty and p1 and p2:
         # Extraer datos de los paises seleccionados
-        d1 = df_yr[df_yr['cname'] == p1]
-        d2 = df_yr[df_yr['cname'] == p2]
+        d1 = df_target[df_target['cname'] == p1]
+        d2 = df_target[df_target['cname'] == p2]
         
         if not d1.empty and not d2.empty:
             # Normalizar para radar chart (Escala 0-1 aproximada para visualización)
@@ -285,8 +293,8 @@ with tab_vs:
         else:
             st.warning("Datos no disponibles para uno de los países en este año.")
 
-# --- TAB 3: AI SIMULATOR ---
-with tab_ai:
+def render_ai_simulator(df_total):
+    st.markdown("## 🤖 AI SIMULATOR")
     col_sim_controls, col_sim_res = st.columns([1, 2])
     
     with col_sim_controls:
@@ -301,12 +309,17 @@ with tab_ai:
     with col_sim_res:
         st.markdown("### 🔮 PREDICCIÓN (RANDOM FOREST)")
         
-        # Entrenar modelo rápido
-        if not df.empty:
+        # Entrenar modelo rápido - CACHED
+        @st.cache_resource
+        def train_model_pro(data):
             ml_cols = ['wdi_lifexp', 'p_polity2', 'vdem_corr', 'wdi_expmil']
-            df_ml = df.dropna(subset=ml_cols + ['gle_cgdpc'])
+            df_ml = data.dropna(subset=ml_cols + ['gle_cgdpc'])
             rf = RandomForestRegressor(n_estimators=50, random_state=42)
             rf.fit(df_ml[ml_cols], df_ml['gle_cgdpc'])
+            return rf
+
+        if not df_total.empty:
+            rf = train_model_pro(df_total)
             
             # Predecir
             pred = rf.predict([[sim_life, sim_dem, sim_corr, sim_mil]])[0]
@@ -317,7 +330,7 @@ with tab_ai:
                 value = pred,
                 domain = {'x': [0, 1], 'y': [0, 1]},
                 title = {'text': "PIB Per Cápita Proyectado"},
-                delta = {'reference': df['gle_cgdpc'].mean(), 'increasing': {'color': "#00d4ff"}},
+                delta = {'reference': df_total['gle_cgdpc'].mean(), 'increasing': {'color': "#00d4ff"}},
                 gauge = {
                     'axis': {'range': [None, 10000], 'tickwidth': 1, 'tickcolor': "white"},
                     'bar': {'color': "#00d4ff"},
@@ -337,7 +350,91 @@ with tab_ai:
             
             st.info(f"ℹ️ Con estos parámetros, el modelo predice una economía de **${pred:,.0f}** por habitante.")
 
-# --- TAB 4: DATA SOURCE ---
-with tab_raw:
-    st.dataframe(df.style.background_gradient(cmap="viridis"), height=600)
+def render_dataset(df_total):
+    st.markdown("## 📄 DATA SOURCE")
+    with st.expander("Ver Dataset Completo", expanded=True):
+        st.dataframe(df_total.style.background_gradient(cmap="viridis"), height=600)
     st.caption("Fuente: Quality of Government (QoG) Standard Time-Series Dataset")
+
+
+# -----------------------------------------------------------------------------
+# 5. Panel Principal (Control de Flujo)
+# -----------------------------------------------------------------------------
+st.write("")
+
+# Checkbox para Modos Especiales
+col_mode_1, col_mode_2 = st.sidebar.columns(2)
+print_mode = col_mode_1.checkbox("🖨️ Imprimir", value=False, help="Modo Reporte PDF")
+pres_mode = col_mode_2.checkbox("📺 Presentación", value=False, help="Modo Diapositivas Interactivas")
+
+if pres_mode:
+    # --- MODO PRESENTACIÓN INTERACTIVO ---
+    if "slide_index" not in st.session_state:
+        st.session_state.slide_index = 0
+
+    # Definir las 'Diapositivas' (Funciones + Títulos)
+    slides = [
+        {"title": "🌍 1. GLOBAL SITUATION ROOM", "func": lambda: render_geo_dashboard(df_yr)},
+        {"title": "⚔️ 2. HEAD-TO-HEAD ANALYSIS", "func": lambda: render_pvp_analysis(df_yr)},
+        {"title": "🤖 3. AI STRATEGIC SIMULATOR", "func": lambda: render_ai_simulator(df)},
+        {"title": "📄 4. DATA SOURCE INTELLIGENCE", "func": lambda: render_dataset(df)}
+    ]
+
+    total_slides = len(slides)
+    current_slide = st.session_state.slide_index
+
+    # Navegación
+    st.markdown("---")
+    col_prev, col_info, col_next = st.columns([1, 4, 1])
+    
+    with col_prev:
+        if st.button("⬅️ PREV", use_container_width=True):
+            st.session_state.slide_index = max(0, current_slide - 1)
+            st.rerun()
+    
+    with col_info:
+        st.markdown(f"<h3 style='text-align: center; margin: 0;'>{slides[current_slide]['title']}</h3>", unsafe_allow_html=True)
+        st.markdown(f"<p style='text-align: center; color: gray;'>SLIDE {current_slide + 1} / {total_slides}</p>", unsafe_allow_html=True)
+
+    with col_next:
+        if st.button("NEXT ➡️", use_container_width=True):
+            st.session_state.slide_index = min(total_slides - 1, current_slide + 1)
+            st.rerun()
+
+    st.markdown("---")
+    
+    # Renderizar contenido de la slide actual
+    slides[current_slide]["func"]()
+
+elif print_mode:
+    # MODO IMPRESIÓN: Renderizar todo secuencialmente
+    st.info("🖨️ **MODO IMPRESIÓN ACTIVADO:** Todo el contenido se muestra en una sola página larga. Usa Ctrl+P (o Command+P) para guardar como PDF. Asegúrate de activar 'Gráficos de fondo' en las opciones de impresión.")
+    
+    st.markdown("---")
+    render_geo_dashboard(df_yr)
+    st.markdown("---")
+    render_pvp_analysis(df_yr)
+    st.markdown("---")
+    render_ai_simulator(df)
+    st.markdown("---")
+    render_dataset(df)
+
+else:
+    # MODO STANDARD: Renderizar con Tabs
+    tab_geo, tab_vs, tab_ai, tab_raw = st.tabs(["🌍 GLOBAL SITUATION ROOM", "⚔️ HEAD-TO-HEAD", "🤖 AI SIMULATOR", "📄 DATA SOURCE"])
+
+    # --- TAB 1: SITUATION ROOM ---
+    with tab_geo:
+        render_geo_dashboard(df_yr)
+
+    # --- TAB 2: HEAD-TO-HEAD ---
+    with tab_vs:
+        render_pvp_analysis(df_yr)
+
+    # --- TAB 3: AI SIMULATOR ---
+    with tab_ai:
+        render_ai_simulator(df)
+
+    # --- TAB 4: DATA SOURCE ---
+    with tab_raw:
+        render_dataset(df)

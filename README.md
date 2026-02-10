@@ -29,6 +29,7 @@ Este proyecto aplica técnicas de **Big Data** e **Ingeniería de Software** par
 A través de un pipeline automatizado, se procesaron décadas de datos históricos de países clave del **"Gran Juego"** (Afganistán, Mongolia, Cáucaso) para modelar matemáticamente sus trayectorias de desarrollo.
 
 ### 🛠️ Tech Stack
+
 ![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-Container-2496ED?style=flat-square&logo=docker&logoColor=white)
 ![Spark](https://img.shields.io/badge/Apache_Spark-Big_Data-E25A1C?style=flat-square&logo=apachespark&logoColor=white)
@@ -40,12 +41,12 @@ A través de un pipeline automatizado, se procesaron décadas de datos históric
 
 ## 🗺️ Estructura de Navegación
 
-| 🧭 Sección | 📝 Descripción |
-| :--- | :--- |
-| **[🚀 Guía de Trabajo](01_README.md)** | Paso a paso para completar el proyecto. Instrucciones detalladas. |
-| **[🐳 Infraestructura](02_INFRAESTRUCTURA.md)** | Explicación técnica de Docker, servicios y redes. |
-| **[💻 Catálogo de Código](05_EXPLICACION_CODIGO.md)** | Documentación técnica de scripts Python (`src/`) y Pipeline ETL. |
-| **[📊 Resultados](03_RESULTADOS.md)** | Informe final con gráficos, modelos y hallazgos del "Gran Juego". |
+| 🧭 Sección                                            | 📝 Descripción                                                    |
+| :---------------------------------------------------- | :---------------------------------------------------------------- |
+| **[🚀 Guía de Trabajo](docs/01_README.md)**                | Paso a paso para completar el proyecto. Instrucciones detalladas. |
+| **[🐳 Infraestructura](docs/02_INFRAESTRUCTURA.md)**       | Explicación técnica de Docker, servicios y redes.                 |
+| **[💻 Catálogo de Código](docs/05_EXPLICACION_CODIGO.md)** | Documentación técnica de scripts Python (`src/`) y Pipeline ETL.  |
+| **[📊 Resultados](docs/03_RESULTADOS.md)**                 | Informe final con gráficos, modelos y hallazgos del "Gran Juego". |
 
 ---
 
@@ -100,8 +101,8 @@ graph TD
 - **Infraestructura:** Docker Compose orquestando JupyterLab, Spark Master/Worker.
 - **ETL:** PySpark para limpieza y transformación (`.parquet`).
 - **Analítica:**
-    - **Machine Learning:** Random Forest (Spark MLlib) para Feature Importance.
-    - **Econometría:** Modelos de Datos de Panel (Fixed Effects vs Random Effects) y Test de Hausman.
+  - **Machine Learning:** Random Forest (Spark MLlib) para Feature Importance.
+  - **Econometría:** Modelos de Datos de Panel (Fixed Effects vs Random Effects) y Test de Hausman.
 - **Frontend:** Dashboard interactivo en Streamlit para exploración de datos.
 
 ---
@@ -109,10 +110,13 @@ graph TD
 ## 🔍 Hallazgos Principales
 
 ### 1. Inteligencia Artificial (Random Forest)
+
 El modelo identificó que, descontando la salud básica (`Esperanza de Vida`), los factores de **Seguridad y Estabilidad del Régimen** tienen un peso predictivo superior a la mera democratización.
 
 ### 2. Validación Econométrica (Test de Hausman)
+
 Se aplicó un **Test de Hausman** comparando modelos de Efectos Fijos vs Aleatorios.
+
 - **Resultado:** Se prefirió el modelo de **Efectos Fijos** ($P < 0.05$).
 - **Interpretación:** Las características únicas e invariables de cada país ("El estilo uzbeko", "La geografía afgana") son determinantes estructurales del éxito o fracaso económico, confirmando la hipótesis de heterogeneidad regional.
 
@@ -165,3 +169,11 @@ docker exec -d jupyter_lab streamlit run /home/jovyan/work/src/app_streamlit_pro
 ```
 
 <small><i>Última actualización corrección visual: v3.0 (Markdown Table)</i></small>
+
+---
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia **MIT**. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+
+Copyright (c) 2026 **Alexis M.**

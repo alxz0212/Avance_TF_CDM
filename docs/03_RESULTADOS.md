@@ -5,7 +5,7 @@
 
 > [!IMPORTANT]
 > **Pregunta de Investigación:**  
-> _"¿Son los factores de 'Poder Duro' (Gasto Militar) o de 'Poder Blando' (Democracia, Control de Corrupción) los que determinan el desarrollo económico en la periferia post-soviética?"_
+> _"¿Qué influye más en la riqueza de los países ex-soviéticos: tener un ejército fuerte y gastar mucho en armas, o ser un país más democrático y con menos corrupción?"_
 
 ---
 
@@ -111,8 +111,6 @@ Para este análisis se ha configurado un **Random Forest Regressor** en PySpark 
 - **Semilla:** `seed=42` (Garantiza reproducibilidad de los resultados).
 - **Justificación:** Se eligió este algoritmo por su robustez ante valores atípicos y su capacidad para capturar relaciones no lineales complejas entre la geopolítica y la economía, superando a modelos lineales simples. Además, ofrece métricas nativas de **Feature Importance** para explicar la causalidad.
 
-```
-
 **🔧 Ajustes realizados:**
 El modelo Random Forest de Spark no tolera valores nulos (`NaNs`). Implementé una limpieza (`.dropna()`) previa al entrenamiento para evitar errores de ejecución.
 
@@ -128,12 +126,12 @@ Para validar estadísticamente las relaciones inferidas por el Machine Learning,
 
 ### Interpretación de Coeficientes (Modelo FE)
 
-| Variable | Coeficiente | P-Valor | Interpretación Causal |
-| :--- | :--- | :--- | :--- |
-| **`wdi_lifexp`** | **+635.55** | 0.000 | **Muy Significativo.** Cada año extra de esperanza de vida añade ~$635 al PIB per cápita. Es el motor principal. |
-| **`p_polity2`** | **+141.17** | 0.024 | **Significativo.** Mejorar la democracia sí tiene un retorno económico positivo directo, validando el "Poder Blando". |
-| **`vdem_corr`** | **-2290.3** | 0.019 | **Contraintuitivo.** El modelo sugiere que *aumentar* el control de la corrupción (valores más altos) correlaciona negativamente con el PIB en esta muestra específica/periodo. Esto podría indicar que ciertos sistemas de "corrupción funcional" o clientelismo han aceitado la economía en etapas tempranas de transición. |
-| **`wdi_expmil`** | **+254.24** | 0.065 | **Marginalmente Significativo.** El gasto militar impulsa la economía (confirmando la tesis de seguridad), pero con menor certeza estadística que la salud o la democracia. |
+| Variable         | Coeficiente | P-Valor | Interpretación Causal                                                                                                                                                                                                                                                                                                         |
+| :--------------- | :---------- | :------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`wdi_lifexp`** | **+635.55** | 0.000   | **Muy Significativo.** Cada año extra de esperanza de vida añade ~$635 al PIB per cápita. Es el motor principal.                                                                                                                                                                                                              |
+| **`p_polity2`**  | **+141.17** | 0.024   | **Significativo.** Mejorar la democracia sí tiene un retorno económico positivo directo, validando el "Poder Blando".                                                                                                                                                                                                         |
+| **`vdem_corr`**  | **-2290.3** | 0.019   | **Contraintuitivo.** El modelo sugiere que _aumentar_ el control de la corrupción (valores más altos) correlaciona negativamente con el PIB en esta muestra específica/periodo. Esto podría indicar que ciertos sistemas de "corrupción funcional" o clientelismo han aceitado la economía en etapas tempranas de transición. |
+| **`wdi_expmil`** | **+254.24** | 0.065   | **Marginalmente Significativo.** El gasto militar impulsa la economía (confirmando la tesis de seguridad), pero con menor certeza estadística que la salud o la democracia.                                                                                                                                                   |
 
 ---
 
@@ -142,7 +140,6 @@ Para validar estadísticamente las relaciones inferidas por el Machine Learning,
 ### 💡 Respuesta a la Pregunta de Investigación
 
 > [!IMPORTANT]
-> **Conclusión General**
 > **Conclusión General**
 > Los datos revelan que el determinante principal del desarrollo en el 'Gran Juego' es una mezcla pragmática donde el **Poder Duro (Seguridad)** condiciona el crecimiento. Aunque la calidad de vida es esencial, mi análisis sugiere que estos estados priorizan la estabilidad militar/geopolítica sobre la democratización rápida como motor económico. Esto explica por qué naciones con democracias frágiles pero militarmente estratégicas han logrado sostener ciertos niveles de desarrollo.
 
@@ -156,4 +153,3 @@ Para validar estadísticamente las relaciones inferidas por el Machine Learning,
 > 1.  **Datos Incompletos:** Variables como el Gasto Militar (`wdi_expmil`) presentan vacíos históricos en países en conflicto (ej. Afganistán).
 > 2.  **Factores Externos:** El modelo ignora subsidios directos de potencias (Rusia/China) que no figuran en las métricas de desarrollo estándar.
 > 3.  **Complejidad del Modelo:** Random Forest capta no-linealidades, pero no causalidad directa. Sería ideal complementar con series temporales.
-```

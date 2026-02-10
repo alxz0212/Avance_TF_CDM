@@ -5,22 +5,34 @@
 
 ---
 
+---
+
+---
+
+## 🎥 Demostración
+
+**¿Quieres ver cómo quedó el Dashboard?**  
+👉 Mira el video en: [07_PROTOTIPO.md](07_PROTOTIPO.md)
+
+---
+
 ## Orden de trabajo
 
 Completa los archivos en este orden. Cada numero indica la secuencia:
 
-| Orden | Archivo                    | Que haces                                   |
-| ----- | -------------------------- | ------------------------------------------- |
-| **1** | `01_README.md` (este archivo) | Defines tu pregunta, paises y variables     |
-| **2** | `02_INFRAESTRUCTURA.md`       | Construyes y explicas tu docker-compose.yml |
-| **3** | `src/verify_spark.py`         | Verificas la conexión con Spark             |
-| **4** | `src/pipeline.py`             | ETL: Limpieza y Transformación en Parquet   |
-| **5** | `src/analysis.py`             | Análisis con ML (Random Forest) en Spark    |
-| **6** | `src/econometric_analysis.py` | Análisis Econométrico (Test de Hausman)     |
-| **7** | `03_RESULTADOS.md`            | Presentas graficos e interpretas resultados |
-| **8** | `04_REFLEXION_IA.md`          | Documentas tu proceso y pegas tus prompts   |
-| **9** | `05_EXPLICACION_CODIGO.md`    | Catálogo técnico de todos los scripts       |
+| Orden  | Archivo                       | Que haces                                   |
+| ------ | ----------------------------- | ------------------------------------------- |
+| **1**  | `01_README.md` (este archivo) | Defines tu pregunta, paises y variables     |
+| **2**  | `02_INFRAESTRUCTURA.md`       | Construyes y explicas tu docker-compose.yml |
+| **3**  | `src/verify_spark.py`         | Verificas la conexión con Spark             |
+| **4**  | `src/pipeline.py`             | ETL: Limpieza y Transformación en Parquet   |
+| **5**  | `src/analysis.py`             | Análisis con ML (Random Forest) en Spark    |
+| **6**  | `src/econometric_analysis.py` | Análisis Econométrico (Test de Hausman)     |
+| **7**  | `03_RESULTADOS.md`            | Presentas graficos e interpretas resultados |
+| **8**  | `04_REFLEXION_IA.md`          | Documentas tu proceso y pegas tus prompts   |
+| **9**  | `05_EXPLICACION_CODIGO.md`    | Catálogo técnico de todos los scripts       |
 | **10** | `06_RESPUESTAS.md`            | Respondes 4 preguntas de comprension        |
+| **11** | `07_PROTOTIPO.md`             | **Nuevo:** Video Demo del Dashboard         |
 
 Los archivos `docker-compose.yml`, `requirements.txt` y `.gitignore` los completas conforme avanzas.
 
@@ -28,7 +40,7 @@ Los archivos `docker-compose.yml`, `requirements.txt` y `.gitignore` los complet
 
 ## Pregunta de investigacion
 
-"¿Son los factores de 'Poder Duro' (Gasto Militar) o de 'Poder Blando' (Democracia, Control de Corrupción) los que determinan el desarrollo económico en la periferia post-soviética?"
+"¿Qué influye más en la riqueza de los países ex-soviéticos: tener un ejército fuerte y gastar mucho en armas, o ser un país más democrático y con menos corrupción?"
 
 ---
 
@@ -119,6 +131,7 @@ El análisis generará los gráficos en la carpeta `notebooks/` y el reporte fin
 ├── 04_REFLEXION_IA.md          # Bitácora de aprendizaje y Prompts
 ├── 05_EXPLICACION_CODIGO.md    # Catálogo y explicación técnica de scripts
 ├── 06_RESPUESTAS.md            # Preguntas de comprensión
+├── 07_PROTOTIPO.md             # Video Demo del proyecto (Prototipo)
 ├── INSTRUCCIONES_DESPLIEGUE.txt# Cheat Sheet con comandos para ejecutar
 ├── capturas/                   # Imágenes de evidencia
 ├── data/
@@ -144,3 +157,11 @@ El análisis generará los gráficos en la carpeta `notebooks/` y el reporte fin
     ├── pipeline.py             # Script ETL (Limpieza y Transformación)
     └── verify_spark.py         # Test de conectividad Spark
 ```
+
+---
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia **MIT**. Consulta el archivo [LICENSE](../LICENSE) para más detalles.
+
+Copyright (c) 2026 **Alexis M.**
