@@ -235,6 +235,20 @@ else:
     st.sidebar.warning("No hay datos cargados.")
     df_filtered = pd.DataFrame()
 
+# Footer con Licencia (Español)
+st.sidebar.markdown("---")
+st.sidebar.markdown(
+    """
+    <div style='text-align: center; color: grey; font-size: 0.8em;'>
+        © 2026 Alexis M.<br>
+        <a href="https://github.com/alxz0212/TF_BigData_CDM/blob/main/LICENSE" target="_blank" style="color: grey; text-decoration: none;">
+            📜 Licencia MIT
+        </a>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
 # -----------------------------------------------------------------------------
 # 3. Layout Principal
 # -----------------------------------------------------------------------------
