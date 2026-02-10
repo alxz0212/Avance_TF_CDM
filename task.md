@@ -28,3 +28,4 @@
   - [x] Implementar 'Modo Presentación' (Slides Interactivas) <!-- id: 29 -->
 - [x] Maintenance <!-- id: 17 -->
   - [x] Update `INSTRUCCIONES_DESPLIEGUE.txt` from GitHub <!-- id: 18 -->
+  - [ ] Add Doc Link to Dashboard Sidebar <!-- id: 19 -->

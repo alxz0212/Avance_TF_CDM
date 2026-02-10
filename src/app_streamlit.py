@@ -251,6 +251,10 @@ st.sidebar.markdown(
     """
     <div style='text-align: center; color: grey; font-size: 0.8em;'>
         © 2026 Alexis M.<br>
+        <a href="https://alxz0212.github.io/TF_BigData_CDM/" target="_blank" style="color: grey; text-decoration: none; font-weight: bold;">
+            📚 Documentación Oficial
+        </a>
+        <br>
         <a href="https://github.com/alxz0212/TF_BigData_CDM/blob/main/LICENSE" target="_blank" style="color: grey; text-decoration: none;">
             📜 Licencia MIT
         </a>
