@@ -153,19 +153,22 @@ docker exec -d jupyter_lab streamlit run /home/jovyan/work/src/app_streamlit_pro
 ## 📂 Estructura del Repositorio
 
 ```text
-├── 01_README.md                # Portada del proyecto (Este archivo)
-├── 02_INFRAESTRUCTURA.md       # Documentación técnica de Docker
-├── 03_RESULTADOS.md            # Informe detallado de hallazgos
-├── 04_REFLEXION_IA.md          # Bitácora de co-creación con IA
-├── 05_EXPLICACION_CODIGO.md    # Catálogo de scripts
-├── 06_RESPUESTAS.md            # Preguntas de defensa
-├── docker-compose.yml          # Orquestación
-├── src/                        # Código Fuente Python
+├── .github/workflows/          # [DevOps] Automatización de despliegue web
+├── docs/                       # [Doc] Documentación oficial (Markdown)
+│   ├── 01_README.md            # Guía de Trabajo (Paso a paso)
+│   ├── 02_INFRAESTRUCTURA.md   # Detalles de Docker
+│   ├── 03_RESULTADOS.md        # Informe de hallazgos
+│   └── 05_EXPLICACION_CODIGO.md# Catálogo técnico de scripts
+├── src/                        # [Code] Código Fuente Python
 │   ├── pipeline.py             # Lógica ETL Big Data
-│   ├── analysis.py             # ML Engine
-│   ├── econometric_analysis.py # Stats Engine
-│   └── app_streamlit.py        # Web App
-└── data/                       # Lakehouse (Raw + Processed)
+│   ├── analysis.py             # ML Engine (Random Forest)
+│   ├── econometric_analysis.py # Stats Engine (Hausman)
+│   ├── app_streamlit.py        # Dashboard (Versión Clásica)
+│   └── app_streamlit_pro.py    # Dashboard (Versión PRO 3D)
+├── data/                       # [Data] Lakehouse (Raw + Processed)
+├── docker-compose.yml          # [Infra] Orquestación de contenedores
+├── mkdocs.yml                  # [Config] Configuración de la web de docs
+└── upload_to_github.bat        # [Tool] Script de subida automática
 ```
 
 <small><i>Última actualización corrección visual: v3.0 (Markdown Table)</i></small>

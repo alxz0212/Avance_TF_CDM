@@ -66,7 +66,7 @@ Los archivos `docker-compose.yml`, `requirements.txt` y `.gitignore` los complet
 | 5   | `wdi_lifexp` | Esperanza de vida     | **Variable de Control:** Indicador básico de bienestar social y salud.         |
 
 **Tip:** Consulta el codebook de QoG para entender que mide cada variable:
-https://www.gu.se/en/quality-government/qog-data
+<https://www.gu.se/en/quality-government/qog-data>
 
 ---
 
@@ -122,37 +122,23 @@ El análisis generará los gráficos en la carpeta `notebooks/` y el reporte fin
 ## Estructura del Proyecto
 
 ```text
-├── 01_README.md                # Este archivo
-├── 02_INFRAESTRUCTURA.md       # Documentación de Docker y Servicios
-├── 03_RESULTADOS.md            # Informe final con gráficos e interpretación
-├── 04_REFLEXION_IA.md          # Bitácora de aprendizaje y Prompts
-├── 05_EXPLICACION_CODIGO.md    # Catálogo y explicación técnica de scripts
-├── 06_RESPUESTAS.md            # Preguntas de comprensión
-├── 07_PROTOTIPO.md             # Video Demo del proyecto (Prototipo)
-├── INSTRUCCIONES_DESPLIEGUE.txt# Cheat Sheet con comandos para ejecutar
-├── capturas/                   # Imágenes de evidencia
-├── data/
-│   ├── processed/              # Datos transformados (Parquet)
-│   └── raw/                    # Dataset original (CSV)
-├── docker/
-│   └── Dockerfile              # Definición de la imagen Jupyter+Spark
-├── docker-compose.yml          # Orquestación de servicios
-├── jars/                       # Drivers JDBC (Postgres)
-├── notebooks/
-│   ├── 01_analisis_asia_central.ipynb # Notebook exploratorio
-│   ├── 02_analisis_gran_juego.ipynb   # Notebook principal del análisis
-│   ├── grafico_correlacion.png
-│   ├── grafico_feature_importance.png
-│   └── hausman_results.txt
-├── requirements.txt            # Dependencias Python
-└── src/
-    ├── analysis.py             # Script de análisis ML (Spark-Submit)
-    ├── app_streamlit.py        # Dashboard Interactivo Web
-    ├── download_data.py        # Script de descarga automática
-    ├── econometric_analysis.py # Script econométrico (Hausman)
-    ├── ingest_data.py          # Script de ingestión a Postgres (Legacy)
-    ├── pipeline.py             # Script ETL (Limpieza y Transformación)
-    └── verify_spark.py         # Test de conectividad Spark
+├── .github/workflows/          # [DevOps] Automatización de despliegue web
+├── docs/                       # [Doc] Documentación oficial (Markdown)
+│   ├── 01_README.md            # Este archivo (Guía de Trabajo)
+│   ├── 02_INFRAESTRUCTURA.md   # Detalles de Docker
+│   ├── 03_RESULTADOS.md        # Informe de hallazgos
+│   ├── 05_EXPLICACION_CODIGO.md# Catálogo técnico de scripts
+│   └── ...                     # Otros archivos de documentación
+├── src/                        # [Code] Código Fuente Python
+│   ├── pipeline.py             # Lógica ETL Big Data
+│   ├── analysis.py             # ML Engine (Random Forest)
+│   ├── econometric_analysis.py # Stats Engine (Hausman)
+│   ├── app_streamlit.py        # Dashboard (Versión Clásica)
+│   └── app_streamlit_pro.py    # Dashboard (Versión PRO 3D)
+├── data/                       # [Data] Lakehouse (Raw + Processed)
+├── docker-compose.yml          # [Infra] Orquestación de contenedores
+├── mkdocs.yml                  # [Config] Configuración de la web de docs
+└── upload_to_github.bat        # [Tool] Script de subida automática
 ```
 
 ---

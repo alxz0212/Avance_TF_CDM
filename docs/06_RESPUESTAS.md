@@ -36,7 +36,7 @@ que ocurre?**
 
 Mirando el gráfico de importancia de variables (Random Forest), veo que el **Gasto Militar** influye mucho más que la democracia. Esto tiene sentido para mi zona de estudio ("El Gran Juego"): parece que los países que más crecen económicamente (como Azerbaiyán) no son los más democráticos, sino los que tienen un estado fuerte y militarizado para mantener el control. Vamos, que la estabilidad política pesa más que la libertad en esta región.
 
-![Feature Importance](notebooks/grafico_feature_importance.png)
+![Feature Importance](capturas/grafico_feature_importance.png)
 
 > **Leyenda de Variables:**
 >

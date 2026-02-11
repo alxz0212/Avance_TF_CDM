@@ -45,7 +45,7 @@ Para el análisis de Machine Learning, hemos seleccionado indicadores clave que 
 
 ### 3.1 Gráfico 1: Matriz de Correlación
 
-![Gráfico 1](notebooks/grafico_correlacion.png)
+![Gráfico 1](capturas/grafico_correlacion.png)
 
 > **Leyenda de Variables:**
 >
@@ -77,7 +77,7 @@ Spark maneja dataframes distribuidos incompatibles con Seaborn. Tuve que realiza
 
 ### 3.2 Gráfico 2: Importancia de Variables (Random Forest)
 
-![Gráfico 2](notebooks/grafico_feature_importance.png)
+![Gráfico 2](capturas/grafico_feature_importance.png)
 
 > **Leyenda de Variables:**
 >
@@ -150,6 +150,6 @@ Para validar estadísticamente las relaciones inferidas por el Machine Learning,
 > [!WARNING]
 > **Puntos a considerar:**
 >
-> 1.  **Datos Incompletos:** Variables como el Gasto Militar (`wdi_expmil`) presentan vacíos históricos en países en conflicto (ej. Afganistán).
-> 2.  **Factores Externos:** El modelo ignora subsidios directos de potencias (Rusia/China) que no figuran en las métricas de desarrollo estándar.
-> 3.  **Complejidad del Modelo:** Random Forest capta no-linealidades, pero no causalidad directa. Sería ideal complementar con series temporales.
+> 1. **Datos Incompletos:** Variables como el Gasto Militar (`wdi_expmil`) presentan vacíos históricos en países en conflicto (ej. Afganistán).
+> 2. **Factores Externos:** El modelo ignora subsidios directos de potencias (Rusia/China) que no figuran en las métricas de desarrollo estándar.
+> 3. **Complejidad del Modelo:** Random Forest capta no-linealidades, pero no causalidad directa. Sería ideal complementar con series temporales.

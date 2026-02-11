@@ -45,12 +45,12 @@ A continuación, se detalla la función técnica y de negocio de cada módulo de
 - **Función:** ETL (Extract, Transform, Load).
 - **Tecnología:** Apache Spark (PySpark SQL).
 - **Flujo de Trabajo:**
-  1.  **Extract:** Lee el CSV crudo.
-  2.  **Transform:**
+  1. **Extract:** Lee el CSV crudo.
+  2. **Transform:**
       - Filtra los 5 países del "Gran Juego" (Afganistán, Mongolia, Cáucaso).
       - Crea la variable derivada `subregion`.
       - Castea tipos de datos (Strings a Doubles) para asegurar precisión matemática.
-  3.  **Load:** Guarda el resultado limpio en formato **Parquet**.
+  3. **Load:** Guarda el resultado limpio en formato **Parquet**.
 - **Detalle Pro:** Usamos `.parquet` en lugar de `.csv` porque es un formato columnar comprimido que es mucho más rápido para leer en análisis posteriores de Big Data.
 
 #### `ingest_data.py` (Módulo Legado)
@@ -153,39 +153,48 @@ graph TD
 > **Conclusión del Flujo de Datos:**  
 > Como se observa en el diagrama, el proyecto sigue una arquitectura lineal de Big Data moderna:
 >
-> 1.  **Ingesta:** Los datos se capturan automáticamente de internet (`download_data.py`).
-> 2.  **Procesamiento:** Se limpian y estructuran en Spark (`pipeline.py`), guardándose en formato eficiente **Parquet**.
-> 3.  **Consumo:** A partir del dato limpio, se derivan tres productos finales: Análisis ML (`analysis.py`), Validación Estadística (`econometric_analysis.py`) y Visualización Interactiva (`app_streamlit_pro.py`).
+> 1. **Ingesta:** Los datos se capturan automáticamente de internet (`download_data.py`).
+> 2. **Procesamiento:** Se limpian y estructuran en Spark (`pipeline.py`), guardándose en formato eficiente **Parquet**.
+> 3. **Consumo:** A partir del dato limpio, se derivan tres productos finales: Análisis ML (`analysis.py`), Validación Estadística (`econometric_analysis.py`) y Visualización Interactiva (`app_streamlit_pro.py`).
 >
 > Esta estructura modular asegura que si cambiamos la fuente de datos, solo tocamos el script de _Ingesta_, sin romper el Dashboard final.
 
 ---
 
-## 4. DevOps y Documentación 📚
+## 4. DevOps y Documentación (Automatización) 🏗️
 
-Para desplegar este sitio web, utilizamos dos archivos clave que a menudo se confunden pero tienen propósitos muy distintos:
+Para desplegar este sitio web, utilizamos un flujo de trabajo automatizado que se basa en el formato **.yml** (YAML).
 
-### `mkdocs.yml` (El Cerebro 🧠)
+### ¿Qué es un archivo .yml / .yaml?
 
-**Ubicación:** Raíz del proyecto.
-**Función:** Configuración del Sitio Web.
-**Qué hace:**
+Es un formato de "serialización de datos" diseñado para ser leído fácilmente por humanos.
 
-- Define el título del sitio, el autor y el tema visual ("Material").
-- Estructura el menú de navegación lateral.
-- Activa plugins y extensiones (como Mermaid para los gráficos).
-- **Es el archivo que tú editas** cuando quieres cambiar el contenido, el orden de las páginas o el color del sitio.
+- **Configuración:** Se usa casi universalmente en DevOps para configurar herramientas.
+- **Indentación:** Se basa estrictamente en espacios (niveles). ¡Un espacio de más o de menos puede invalidar el archivo!
+- **Estructura:** Funciona mediante pares de `clave: valor`.
 
-### `.github/workflows/deploy_docs.yml` (El Obrero 👷)
+### Relación entre los elementos clave
 
-**Ubicación:** `.github/workflows/` (antes llamado `mkdocs.yml`).
-**Función:** Automatización del Despliegue (CI/CD).
-**Qué hace:**
+#### 1. `mkdocs.yml` (El Cerebro 🧠)
 
-- Es un script de instrucciones para los servidores de GitHub (GitHub Actions).
-- Cada vez que haces un cambio (`git push`), este archivo le dice a GitHub:
-  1. "Instala Python y MkDocs".
-  2. "Instala los plugins necesarios (Material, Mermaid)".
-  3. "Construye la página web estática".
-  4. "Publicala en internet (GitHub Pages)".
-- **No necesitas editarlo casi nunca**, salvo que cambies la forma de desplegar el sitio.
+- **Ubicación:** Raíz del proyecto.
+- **Función:** Es el archivo central de configuración de tu sitio web.
+- **Navegación & index.md:** Aquí es donde asocias tus archivos Markdown con el menú de la web. Por ejemplo:
+  - `- "🏠 Inicio": index.md`
+  - Esto le dice a MkDocs que cuando alguien haga clic en "Inicio", debe mostrar el contenido de `index.md`.
+- **Estética:** Aquí defines si el sitio es oscuro (Slate) o claro, los colores primarios y los iconos.
+
+#### 2. `.github/workflows/deploy_docs.yml` (El Robot 👷)
+
+- **Ubicación:** `.github/workflows/`.
+- **Función:** Automatización del Despliegue (CI/CD).
+- **Flujo:** Cada vez que haces un `git push` a la rama `main`, este "robot" se despierta y:
+  1. Lee el `mkdocs.yml` para entender la estructura.
+  2. Procesa el `index.md` y los demás archivos `.md`.
+  3. Transforma todo en código HTML real (el sitio web).
+  4. Lo publica en GitHub Pages.
+
+#### 3. `index.md` (La Puerta de Entrada 🚪)
+
+- Es el archivo de contenido más importante. Es la "Home" de tu documentación.
+- Sin un archivo designado como inicio en el `mkdocs.yml`, la web no tendría una página de aterrizaje clara.
